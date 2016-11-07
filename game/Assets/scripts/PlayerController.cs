@@ -8,11 +8,15 @@ public class PlayerController : MonoBehaviour {
 	private AudioSource audio;
 	private bool isFacingRight;
 	private Animator animator;
+	private float moveHorizontal;
+	private float moveVertical;
 
 
 	void Awake() {
-		//LoadPlayerPos (0, -1f, 0);
-		audio = GetComponent<AudioSource>();
+		
+		if (audio == null) {
+			audio = GetComponent<AudioSource> ();
+		}
 	}
 
     // Use this for initialization
@@ -27,23 +31,31 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float moveHorizontal = Input.GetAxis ("Horizontal");
-		float moveVertical = Input.GetAxis ("Vertical");
+		moveHorizontal = Input.GetAxis ("Horizontal");
+		moveVertical = Input.GetAxis ("Vertical");
 		Vector2 movement = new Vector2 (moveHorizontal * speed, moveVertical * speed);
 		MovePlayer (movement);
 		if ((moveHorizontal < 0 && isFacingRight) || (moveHorizontal > 0 && !isFacingRight))
 			Flip ();
 		//make footsteps sound when player moves
-		if (Input.GetButtonDown ("Horizontal") || Input.GetButtonDown ("Vertical")) {
-			
+		if (IsMoving () && audio.isPlaying == false) {
 			audio.Play ();
 		} 
 		// stop footsteps soundswhen player stops moving
-		else if (Input.GetButtonUp ("Vertical")) {
-			
+		else if (!IsMoving () && audio.isPlaying) {
 			audio.Stop ();
 		}
     }
+
+
+	//Is the player moving?
+	bool IsMoving() {
+
+		if (moveVertical == 0 && moveHorizontal == 0)
+			return false;
+		else
+			return true;
+	}
 
 	void MovePlayer(Vector2 direction) {	
 		// Get the player's current position
