@@ -33,7 +33,7 @@ public class QuestionTrigger : MonoBehaviour {
 			Debug.Log ("Changing scene to Dialogue");
 			//SceneManager.LoadScene ("dialogue");
 
-			SceneManager.LoadScene ("QA_scene");
+			SceneManager.LoadScene ("doorCutscene");
 
 		}
 	}

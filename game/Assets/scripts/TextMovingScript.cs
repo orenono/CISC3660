@@ -21,8 +21,12 @@ public class TextMovingScript : MonoBehaviour {
 
 		textPosition.Translate (-1 * speed, 0, 0);
 
-		if ((textPosition.position.x <= -13000) || Input.anyKey == true)
+		if ((textPosition.position.x <= -15000) || Input.GetKeyDown ("space"))
 			LoadGame ();
+		else if (Input.GetKeyDown (KeyCode.Escape))  
+		{
+			SceneManager.LoadScene ("startMenu");
+		}
 	
 	}
 
