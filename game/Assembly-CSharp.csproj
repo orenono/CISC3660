@@ -52,20 +52,15 @@
      <Compile Include="Assets\scripts\CountChildren.cs" />
      <Compile Include="Assets\scripts\Dialogue.cs" />
      <Compile Include="Assets\scripts\EnemyController.cs" />
-     <Compile Include="Assets\scripts\FreeParallax.cs" />
      <Compile Include="Assets\scripts\GameController.cs" />
      <Compile Include="Assets\scripts\HighlightText.cs" />
-     <Compile Include="Assets\scripts\MenuScript.cs" />
      <Compile Include="Assets\scripts\NextButton.cs" />
      <Compile Include="Assets\scripts\PlayerController.cs" />
      <Compile Include="Assets\scripts\QuestionController.cs" />
      <Compile Include="Assets\scripts\QuestionTrigger.cs" />
      <Compile Include="Assets\scripts\Questions.cs" />
      <Compile Include="Assets\scripts\Score.cs" />
-     <Compile Include="Assets\scripts\TextMovingScript.cs" />
      <Compile Include="Assets\scripts\main.cs" />
-     <None Include="Assets\Fonts\zombie_control\zombiecontrol.txt" />
-     <None Include="Assets\Fonts\friday13\Font License.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
