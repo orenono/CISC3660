@@ -33,11 +33,11 @@ public class EnemyController : MonoBehaviour {
 		range = Vector2.Distance(transform.position, target.position);
 		speed = target.GetComponent<PlayerController> ().speed;
 
+		
 		if (range > minDistance)
 		{
-			//Debug.Log(range);
-
-			transform.position = Vector2.MoveTowards(transform.position, target.position, speed * 2 * Time.deltaTime);
+			//Debug.Log(range)
+			transform.position = Vector2.MoveTowards(transform.position, target.position, speed * 3.1f * Time.deltaTime);
 		}
 			
 	
