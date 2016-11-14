@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour {
 	private AudioSource caughtThePlayer;
 	private bool isFacingRight;
 	private Animator animator;
+	public GameObject damageIndicator;
 
 	void Awake() {
 		caughtThePlayer = GetComponent<AudioSource>();
@@ -46,6 +47,7 @@ public class EnemyController : MonoBehaviour {
 	// When the player collides with the enemy, kill the player
 	void OnTriggerEnter2D (Collider2D other) {
 		if (other.gameObject.CompareTag ("Player")) {
+			damageIndicator.SetActive (true);
 			animator.SetBool ("attack", true);
 			// shout is played when killer catches player
 			caughtThePlayer.Play ();
@@ -55,6 +57,12 @@ public class EnemyController : MonoBehaviour {
 			// Code to handle killing the player
 			//other.gameObject.SetActive (false);
 
+		}
+	}
+
+	void OnTriggerExit2D (Collider2D other) {
+		if (other.gameObject.CompareTag ("Player")) {
+			damageIndicator.SetActive (false);
 		}
 	}
 		

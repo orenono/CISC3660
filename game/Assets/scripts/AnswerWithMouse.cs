@@ -5,8 +5,13 @@ public class AnswerWithMouse : MonoBehaviour {
 
 	public static bool lockAnswer = false;
 
+	private AudioSource hoverAudio;
+
 	// Use this for initialization
 	void Start () {
+
+		if (hoverAudio == null)
+			hoverAudio = GetComponent <AudioSource> ();
 
 	}
 	
@@ -25,5 +30,9 @@ public class AnswerWithMouse : MonoBehaviour {
 		lockAnswer = true;
 
 
+	}
+
+	void OnMouseEnter() {
+		hoverAudio.Play ();
 	}
 }

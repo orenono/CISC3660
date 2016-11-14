@@ -4,9 +4,13 @@ using UnityEngine.SceneManagement;
 
 public class NextButton : MonoBehaviour {
 	public Transform resultObj;
+	private AudioSource nextButtonAudio;
 
 	// Use this for initialization
 	void Start () {
+
+		if (nextButtonAudio == null)
+			nextButtonAudio = GetComponent <AudioSource> ();
 
 	}
 	
@@ -16,8 +20,8 @@ public class NextButton : MonoBehaviour {
 	}
 
 	void OnMouseDown() {
-
-	
+		nextButtonAudio.Play ();
+		
 		// Change to another question and
 		// limit the counter within the question array
 		if (QuestionController.counter <= Questions.qa.GetLength (0)) {
@@ -34,8 +38,9 @@ public class NextButton : MonoBehaviour {
 				//QuestionController.counter = 0;
 				Debug.Log ("Changing scene to level01");
 				SceneManager.LoadScene ("level01");
-				}
+			}
 		}
+
 
 		AnswerWithMouse.lockAnswer = false;
 		resultObj.GetComponent<TextMesh> ().text = "";	
