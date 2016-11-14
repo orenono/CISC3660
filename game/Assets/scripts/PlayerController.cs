@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 	
@@ -11,6 +12,10 @@ public class PlayerController : MonoBehaviour {
 	private float moveHorizontal;
 	private float moveVertical;
 
+	public GameObject startStreet, spawnStreet, policyStation;
+	public Vector2 spawnLocation;
+	public int spawnLimit;
+	public Text winTxt;
 
 	void Awake() {
 		
@@ -26,7 +31,9 @@ public class PlayerController : MonoBehaviour {
 		isFacingRight = true;
 		speed = 3.0f;
 		//LoadPlayerPos (0, 2, 0);
-
+		spawnLimit = 5;
+		spawnLocation = new Vector2 (startStreet.transform.position.x, startStreet.transform.position.y);
+		winTxt.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -45,7 +52,16 @@ public class PlayerController : MonoBehaviour {
 		else if (!IsMoving () && audio.isPlaying) {
 			audio.Stop ();
 		}
-    }
+
+		if (this.transform.position.y >= spawnLocation.y && spawnLimit > 0) {
+			spawnLimit--;
+			spawnLocation = new Vector2 (spawnLocation.x, spawnLocation.y + 63);
+			Instantiate (spawnStreet, spawnLocation, Quaternion.identity);
+		} else if (spawnLimit == 0) {
+			spawnLocation = new Vector2 (spawnLocation.x, spawnLocation.y + 38);
+			Instantiate (policyStation, spawnLocation, Quaternion.identity);    
+		}
+	}
 
 
 	//Is the player moving?
@@ -73,13 +89,16 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D other) {
 		if (other.gameObject.CompareTag ("Enemy")) {
 			animator.SetBool("hit", true);
-
+		
 			//other.gameObject.SetActive (false);
 			//Debug.Log ("Player collided with the enemy");
 			//rb2d.gameObject.SetActive (false);
 
 		}
-
+		if (other.gameObject.CompareTag ("PoliceStation")) {
+			Time.timeScale = 0.0f;
+			winTxt.enabled = true;
+		}
 	}
 
 	void OnDestroy() {

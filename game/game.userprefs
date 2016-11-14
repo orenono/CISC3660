@@ -1,8 +1,25 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/ButtonBehaviorLv01.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\NextButton.cs">
     <Files>
-      <File FileName="Assets/scripts/ButtonBehaviorLv01.cs" Line="40" Column="32" />
+      <File FileName="Assets\scripts\MovingSpriteScript.cs" Line="41" Column="3" />
+      <File FileName="Assets\scripts\MenuScript.cs" Line="19" Column="49" />
+      <File FileName="Assets\scripts\ButtonBehaviorLv01.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\TextMovingScript.cs" Line="24" Column="48" />
+      <File FileName="Assets\scripts\FreeParallax.cs" Line="234" Column="41" />
+      <File FileName="Assets\scripts\KnockingScript.cs" Line="13" Column="24" />
+      <File FileName="Assets\scripts\Dialogue2Script.cs" Line="102" Column="29" />
+      <File FileName="Assets\scripts\PlayerController.cs" Line="63" Column="4" />
+      <File FileName="Assets\scripts\EnemyController.cs" Line="54" Column="4" />
+      <File FileName="Assets\scripts\GameController.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\main.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\QuestionController.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\QuestionTrigger.cs" Line="36" Column="41" />
+      <File FileName="Assets\scripts\NextButton.cs" Line="23" Column="27" />
+      <File FileName="Assets\scripts\AnswerWithMouse.cs" Line="35" Column="1" />
+      <File FileName="Assets\scripts\Score.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\CameraController.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\Questions.cs" Line="42" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
