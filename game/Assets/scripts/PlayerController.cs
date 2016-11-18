@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour {
 		spawnLimit = 5;
 		spawnLocation = new Vector2 (startStreet.transform.position.x, startStreet.transform.position.y);
 		winTxt.enabled = false;
+		GameController.instance.LoadPlayerPosition ();
 	}
 	
 	// Update is called once per frame
@@ -42,8 +43,10 @@ public class PlayerController : MonoBehaviour {
 		moveVertical = Input.GetAxis ("Vertical");
 		Vector2 movement = new Vector2 (moveHorizontal * speed, moveVertical * speed);
 		MovePlayer (movement);
+
 		if ((moveHorizontal < 0 && isFacingRight) || (moveHorizontal > 0 && !isFacingRight))
 			Flip ();
+
 		//make footsteps sound when player moves
 		if (IsMoving () && audio.isPlaying == false) {
 			audio.Play ();

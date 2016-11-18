@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class QuestionTrigger : MonoBehaviour {
 	public static int QuestionsCounter;
-	public GameObject player;
+	//public GameObject player;
 
 
 
@@ -29,7 +29,7 @@ public class QuestionTrigger : MonoBehaviour {
 
 			gameObject.GetComponent<Renderer> ().material.color = Color.black;
 			GameController.instance.SetTriggerUse (int.Parse (gameObject.name), true);
-
+			GameController.instance.SavePlayerPosition();
 			Debug.Log ("Changing scene to Dialogue");
 			//SceneManager.LoadScene ("dialogue");
 
