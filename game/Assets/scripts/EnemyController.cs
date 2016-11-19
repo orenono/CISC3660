@@ -36,11 +36,8 @@ public class EnemyController : MonoBehaviour {
 
 		if (range > minDistance)
 		{
-			//Debug.Log(range);
-
 			transform.position = Vector2.MoveTowards(transform.position, target.position, speed * 2 * Time.deltaTime);
-		}
-			
+		}			
 	
 	}
 
@@ -49,13 +46,9 @@ public class EnemyController : MonoBehaviour {
 		if (other.gameObject.CompareTag ("Player")) {
 			damageIndicator.SetActive (true);
 			animator.SetBool ("attack", true);
+
 			// shout is played when killer catches player
 			caughtThePlayer.Play ();
-
-			Debug.Log ("The killer got the player!");
-
-			// Code to handle killing the player
-			//other.gameObject.SetActive (false);
 
 		}
 	}

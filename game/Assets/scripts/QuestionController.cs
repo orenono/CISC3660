@@ -39,8 +39,7 @@ public class QuestionController : MonoBehaviour {
 			if (GetCorrectAnswer (counter) == selectedAnswer) {
 				resultObj.GetComponent<TextMesh> ().text = "Correct!   Click next to continue";
 
-				//score.GetComponent<Score> ().IncreaseScore ();
-				//GameController.instance.IncreaseScore ();
+				GameController.instance.IncreaseScore ();
 				//Debug.Log ("Correct answer count: " + GameController.instance.GetCorrectAnswerCount ());
 
 			} 
