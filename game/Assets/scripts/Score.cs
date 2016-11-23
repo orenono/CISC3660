@@ -1,31 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Score : MonoBehaviour {
-	public int correctAns;
-	private int numberOfQuestions;
+	public Text scoreText;
 
 
 	// Use this for initialization
 	void Start () {
-		correctAns = 0;
-		numberOfQuestions = 3; //Questions.qa.GetLength (0);
+		scoreText = scoreText.GetComponent<Text> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		DisplayScore ();
 	}
 
-	public void IncreaseScore() {
-		correctAns++;
+	public void DisplayScore() {
+		scoreText.text = "Score: " + GameController.instance.GetCorrectAnswerCount() + "/" +
+				GameController.instance.GetNumberOfQuestions();
 	}
-
-	public int GetCorrectAnswerCount() {
-		return correctAns;
-	}
-
-	public double GetScorePercentage() {
-		return correctAns/numberOfQuestions;
-	}
+		
 }

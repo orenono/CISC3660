@@ -14,6 +14,9 @@ public class GameController : MonoBehaviour {
 
 	private int correctAns = 0;
 	private bool[] isTriggerUsed = new bool[8];
+	private bool countdown = false;
+	PlayerController player;
+	Vector2 playerPos;
 
 	void Awake() {
 
@@ -31,7 +34,8 @@ public class GameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		if (player == null)
+			player = GameObject.FindObjectOfType (typeof(PlayerController)) as PlayerController; 
 
 
 		// Score Variables
@@ -70,6 +74,30 @@ public class GameController : MonoBehaviour {
 
 	public double GetScorePercentage() {
 		return GetCorrectAnswerCount() / GetNumberOfQuestions ();
+	}
+
+	/////////////////////////////////////////////
+	//		UI Methods
+	/////////////////////////////////////////////
+
+	public bool isCountdownPlaying() {
+		return countdown;
+	}
+
+	public void SetCountdownActive(bool toggle) {
+		countdown = toggle;
+	}
+
+	/////////////////////////////////////////////
+	//		Player Methods
+	/////////////////////////////////////////////
+
+	public void SavePlayerPosition() {
+		playerPos = player.transform.position;
+	}
+
+	public void LoadPlayerPosition() {
+		player.transform.position = playerPos;
 	}
 
 }

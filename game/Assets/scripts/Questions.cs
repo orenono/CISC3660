@@ -39,25 +39,7 @@ public class Questions : MonoBehaviour {
 			"100 billion",
 			"75 billion",
 			"3"
-		},
-
-		{
-			"More questions 1?",
-			"a1 1",
-			"a2 1",
-			"a3 1",
-			"a4 1",
-			"1"
-		},
-
-		{
-			"More questions 2?",
-			"a1 2",
-			"a2 2",
-			"a3 2",
-			"a4 2",
-			"2"
-		},
+		}
 	};
 
 	// Use this for initialization

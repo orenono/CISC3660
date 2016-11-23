@@ -31,6 +31,9 @@ public class ButtonBehaviorLv01 : MonoBehaviour {
 			PauseGame ();
 		else if (Input.GetButtonDown ("Jump") && paused) 
 			ResumeGame ();
+		else if (Input.GetKeyDown (KeyCode.Escape)) {
+			SceneManager.LoadScene("startMenu");
+		}
 	}
 
 	public void PauseGame()

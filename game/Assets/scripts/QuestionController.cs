@@ -12,6 +12,7 @@ public class QuestionController : MonoBehaviour {
 	public GameObject qTrigger;
 	public GameObject score;
 
+
 	public static string selectedAnswer;
 	public static string choiceSelected = "n";
 	public static int counter = 0;
@@ -37,9 +38,9 @@ public class QuestionController : MonoBehaviour {
 			// Check the player's choice with the correct answer from the array
 			if (GetCorrectAnswer (counter) == selectedAnswer) {
 				resultObj.GetComponent<TextMesh> ().text = "Correct!   Click next to continue";
-				//score.GetComponent<Score> ().IncreaseScore ();
+
 				GameController.instance.IncreaseScore ();
-				Debug.Log ("Correct answer count: " + GameController.instance.GetCorrectAnswerCount ());
+				//Debug.Log ("Correct answer count: " + GameController.instance.GetCorrectAnswerCount ());
 
 			} 
 
@@ -47,21 +48,24 @@ public class QuestionController : MonoBehaviour {
 
 				switch (int.Parse(GetCorrectAnswer (counter))) {
 				case 1:
-					Debug.Log ("one");
 					resultObj.GetComponent<TextMesh> ().text = "Wrong! The correct answer is the first choice!\n\t\t\tClick next to continue";
+					StartCoroutine(ShowCorrectAnswer (ans1, Color.yellow, 46));
 					break;
 
 				case 2:
 					resultObj.GetComponent<TextMesh> ().text = "Wrong! The correct answer is the second choice!\n\t\t\tClick next to continue";
+					StartCoroutine(ShowCorrectAnswer (ans2, Color.yellow, 46));
+
 					break;
 					
 				case 3:
-					Debug.Log ("three");
 					resultObj.GetComponent<TextMesh> ().text = "Wrong! The correct answer is the third choice!\n\t\t\tClick next to continue";
+					StartCoroutine(ShowCorrectAnswer (ans3, Color.yellow, 46));	
 					break;
 					
 				case 4:
 					resultObj.GetComponent<TextMesh> ().text = "Wrong! The correct answer is the forth choice!\n\t\t\tClick next to continue";
+					StartCoroutine(ShowCorrectAnswer (ans4, Color.yellow, 46));
 					break;
 				}
 			} 
@@ -91,6 +95,26 @@ public class QuestionController : MonoBehaviour {
 		ans2.GetComponent<BoxCollider2D> ().enabled = b;
 		ans3.GetComponent<BoxCollider2D> ().enabled = b;
 		ans4.GetComponent<BoxCollider2D> ().enabled = b;
+	}
+
+	// Highlight the correct answer after the player picks the wrong one
+	public IEnumerator ShowCorrectAnswer(TextMesh tm, Color c, int fontSize) { 
+		tm.GetComponent<TextMesh> ().color = c;
+		tm.GetComponent<TextMesh> ().fontSize = fontSize;
+		for (int i = 0; i < 8; i++) {	
+			yield return new WaitForSeconds (.1f);
+			tm.GetComponent<TextMesh> ().color = Color.red;
+			tm.GetComponent<TextMesh> ().fontSize = fontSize + 2;
+			yield return new WaitForSeconds (.1f);
+			tm.GetComponent<TextMesh> ().color = c;
+			tm.GetComponent<TextMesh> ().fontSize = fontSize - 2;
+		}
+	}
+
+	// Reset colors of all the answers
+	public void ResetAnswerColors(TextMesh tm, Color c, int fontSize) { 
+		tm.GetComponent<TextMesh> ().color = c;
+		tm.GetComponent<TextMesh> ().fontSize = fontSize;
 	}
 
 	IEnumerator wait(float n) {

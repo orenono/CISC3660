@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour {
 	private AudioSource caughtThePlayer;
 	private bool isFacingRight;
 	private Animator animator;
+	public GameObject damageIndicator;
 
 	void Awake() {
 		caughtThePlayer = GetComponent<AudioSource>();
@@ -33,28 +34,28 @@ public class EnemyController : MonoBehaviour {
 		range = Vector2.Distance(transform.position, target.position);
 		speed = target.GetComponent<PlayerController> ().speed;
 
-		
 		if (range > minDistance)
 		{
-			//Debug.Log(range)
-			transform.position = Vector2.MoveTowards(transform.position, target.position, speed * 3.1f * Time.deltaTime);
-		}
-			
+			transform.position = Vector2.MoveTowards(transform.position, target.position, speed * 2 * Time.deltaTime);
+		}			
 	
 	}
 
 	// When the player collides with the enemy, kill the player
 	void OnTriggerEnter2D (Collider2D other) {
 		if (other.gameObject.CompareTag ("Player")) {
+			damageIndicator.SetActive (true);
 			animator.SetBool ("attack", true);
+
 			// shout is played when killer catches player
 			caughtThePlayer.Play ();
 
-			Debug.Log ("The killer got the player!");
+		}
+	}
 
-			// Code to handle killing the player
-			//other.gameObject.SetActive (false);
-
+	void OnTriggerExit2D (Collider2D other) {
+		if (other.gameObject.CompareTag ("Player")) {
+			damageIndicator.SetActive (false);
 		}
 	}
 		
