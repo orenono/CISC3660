@@ -31,11 +31,14 @@ public class PlayerController : MonoBehaviour {
 		animator = GetComponent<Animator> ();
 		isFacingRight = true;
 		speed = 3.0f;
-		//LoadPlayerPos (0, 2, 0);
+
 		spawnLimit = 5;
 		spawnLocation = new Vector2 (startStreet.transform.position.x, startStreet.transform.position.y);
 		winTxt.enabled = false;
-		GameController.instance.LoadPlayerPosition (); // this does not work as of right now
+
+		GameController.instance.LoadData ("Player"); 
+		//GameController.instance.LoadData ("Healthbar"); // doesn't work
+	
 	}
 	
 	// Update is called once per frame
@@ -126,11 +129,14 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	void OnDestroy() {
-		//SavePlayerPos ();
+	public void Flip() {
+		Vector3 playerScale = transform.localScale;
+		playerScale.x = playerScale.x * -1;
+		transform.localScale = playerScale;
+		isFacingRight = !isFacingRight;
 	}
 
-
+/*
 	public void SavePlayerPos() {
 		PlayerPrefs.SetFloat ("X", transform.position.x);
 		PlayerPrefs.SetFloat ("Y", transform.position.y);
@@ -146,11 +152,7 @@ public class PlayerController : MonoBehaviour {
 										+ yOffset, PlayerPrefs.GetFloat ("Z") + zOffset);
 		transform.position = playerPos;
 	}
+	*/
 
-	public void Flip() {
-		Vector3 playerScale = transform.localScale;
-		playerScale.x = playerScale.x * -1;
-		transform.localScale = playerScale;
-		isFacingRight = !isFacingRight;
-	}
+
 }

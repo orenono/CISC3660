@@ -21,7 +21,8 @@ public class EnemyController : MonoBehaviour {
 		rb2d = GetComponent<Rigidbody2D> ();
 		animator = GetComponent<Animator> ();
 		isFacingRight = false;
-
+			
+		GameController.instance.LoadData ("Enemy");
 	}
 	
 	// Update is called once per frame

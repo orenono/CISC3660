@@ -15,8 +15,12 @@ public class GameController : MonoBehaviour {
 	private int correctAns = 0;
 	private bool[] isTriggerUsed = new bool[8];
 	private bool countdown = false;
-	PlayerController player;
+	GameObject player;
 	Vector2 playerPos;
+	GameObject enemy;
+	Vector2 enemyPos;
+	Health health;
+	float currHealth;
 
 	void Awake() {
 
@@ -34,13 +38,7 @@ public class GameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if (player == null)
-			player = GameObject.FindObjectOfType (typeof(PlayerController)) as PlayerController; 
-
-
-		// Score Variables
-		//correctAns = 0;
-
+		
 
 	}
 
@@ -87,17 +85,63 @@ public class GameController : MonoBehaviour {
 	public void SetCountdownActive(bool toggle) {
 		countdown = toggle;
 	}
-
+		
 	/////////////////////////////////////////////
-	//		Player Methods
+	//		Data Persistent Methods
 	/////////////////////////////////////////////
 
-	public void SavePlayerPosition() {
-		playerPos = player.transform.position;
+	public void SaveData (string str) {
+		switch(str) {
+		case "Player":
+			if (player == null)
+				player = GameObject.Find (str);
+
+			playerPos = player.transform.position;
+			break;
+
+		case "Enemy":
+			if (enemy == null)
+				enemy = GameObject.Find (str);
+
+			enemyPos = enemy.transform.position;
+			break;
+
+		case "Healthbar":
+			if (health == null)
+				health = GameObject.FindObjectOfType (typeof(Health)) as Health;
+
+			currHealth = health.GetCurrentHealth ();
+			break;
+		}
+
 	}
 
-	public void LoadPlayerPosition() {
-		player.transform.position = playerPos;
+	public void LoadData (string str) {
+		switch(str) {
+		case "Player":
+			if (player == null)
+				player = GameObject.Find (str);
+
+			player.transform.position = playerPos;
+			break;
+
+		case "Enemy":
+			if (enemy == null)
+				enemy = GameObject.Find (str);
+
+			enemyPos = enemyPos - new Vector2 (0, 5f);
+			enemy.transform.position = enemyPos;
+			break;
+
+		case "Healthbar":
+			if (health == null)
+				health = GameObject.FindObjectOfType (typeof(Health)) as Health;
+
+			health.SetCurrentHealth(currHealth);
+			break;
+		}
+
 	}
+		
 
 }
