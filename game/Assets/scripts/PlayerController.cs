@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour {
 	
 	private Rigidbody2D rb2d;
 	public float speed;
+	public Health playerHealth;
 	private AudioSource audio;
 	private bool isFacingRight;
 	private Animator animator;
@@ -30,10 +31,14 @@ public class PlayerController : MonoBehaviour {
 		animator = GetComponent<Animator> ();
 		isFacingRight = true;
 		speed = 3.0f;
-		//LoadPlayerPos (0, 2, 0);
+
 		spawnLimit = 5;
 		spawnLocation = new Vector2 (startStreet.transform.position.x, startStreet.transform.position.y);
 		winTxt.enabled = false;
+
+		GameController.instance.LoadData ("Player"); 
+		//GameController.instance.LoadData ("Healthbar"); // doesn't work
+	
 	}
 	
 	// Update is called once per frame
@@ -42,8 +47,10 @@ public class PlayerController : MonoBehaviour {
 		moveVertical = Input.GetAxis ("Vertical");
 		Vector2 movement = new Vector2 (moveHorizontal * speed, moveVertical * speed);
 		MovePlayer (movement);
+
 		if ((moveHorizontal < 0 && isFacingRight) || (moveHorizontal > 0 && !isFacingRight))
 			Flip ();
+
 		//make footsteps sound when player moves
 		if (IsMoving () && audio.isPlaying == false) {
 			audio.Play ();
@@ -57,7 +64,8 @@ public class PlayerController : MonoBehaviour {
 			spawnLimit--;
 			spawnLocation = new Vector2 (spawnLocation.x, spawnLocation.y + 63);
 			Instantiate (spawnStreet, spawnLocation, Quaternion.identity);
-		} else if (spawnLimit == 0) {
+		} 
+		else if (spawnLimit == 0) {
 			spawnLocation = new Vector2 (spawnLocation.x, spawnLocation.y + 38);
 			Instantiate (policyStation, spawnLocation, Quaternion.identity);    
 		}
@@ -66,7 +74,6 @@ public class PlayerController : MonoBehaviour {
 
 	//Is the player moving?
 	bool IsMoving() {
-
 		if (moveVertical == 0 && moveHorizontal == 0)
 			return false;
 		else
@@ -85,27 +92,51 @@ public class PlayerController : MonoBehaviour {
 	}
 
 
-	// Destroy the player if the enemy collides with it
+	// Decrease player's health if the enemy collides with it
 	void OnTriggerEnter2D (Collider2D other) {
 		if (other.gameObject.CompareTag ("Enemy")) {
 			animator.SetBool("hit", true);
-		
+			playerHealth.DecreaseHealth ();
 			//other.gameObject.SetActive (false);
-			//Debug.Log ("Player collided with the enemy");
-			//rb2d.gameObject.SetActive (false);
 
 		}
 		if (other.gameObject.CompareTag ("PoliceStation")) {
 			Time.timeScale = 0.0f;
 			winTxt.enabled = true;
 		}
+
 	}
 
-	void OnDestroy() {
-		//SavePlayerPos ();
+	// killing the player code
+	public bool IsPlayerDead () {
+		if (playerHealth.GetCurrentHealth () == 0)
+			return true;
+		else
+			return false;
 	}
 
+	public void KillThePlayer() {
+		if (IsPlayerDead()) {
+			rb2d.gameObject.SetActive (false);
 
+			// TODO
+			// Play the gameover movie (killer killing the player, or something close to it)
+
+			// Show the final score
+
+			// Give the user an option to play the game again
+
+		}
+	}
+
+	public void Flip() {
+		Vector3 playerScale = transform.localScale;
+		playerScale.x = playerScale.x * -1;
+		transform.localScale = playerScale;
+		isFacingRight = !isFacingRight;
+	}
+
+/*
 	public void SavePlayerPos() {
 		PlayerPrefs.SetFloat ("X", transform.position.x);
 		PlayerPrefs.SetFloat ("Y", transform.position.y);
@@ -121,11 +152,7 @@ public class PlayerController : MonoBehaviour {
 										+ yOffset, PlayerPrefs.GetFloat ("Z") + zOffset);
 		transform.position = playerPos;
 	}
+	*/
 
-	public void Flip() {
-		Vector3 playerScale = transform.localScale;
-		playerScale.x = playerScale.x * -1;
-		transform.localScale = playerScale;
-		isFacingRight = !isFacingRight;
-	}
+
 }

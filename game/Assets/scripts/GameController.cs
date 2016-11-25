@@ -14,6 +14,13 @@ public class GameController : MonoBehaviour {
 
 	private int correctAns = 0;
 	private bool[] isTriggerUsed = new bool[8];
+	private bool countdown = false;
+	GameObject player;
+	Vector2 playerPos;
+	GameObject enemy;
+	Vector2 enemyPos;
+	Health health;
+	float currHealth;
 
 	void Awake() {
 
@@ -31,12 +38,7 @@ public class GameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
-
-
-		// Score Variables
-		//correctAns = 0;
-
+		
 
 	}
 
@@ -71,5 +73,75 @@ public class GameController : MonoBehaviour {
 	public double GetScorePercentage() {
 		return GetCorrectAnswerCount() / GetNumberOfQuestions ();
 	}
+
+	/////////////////////////////////////////////
+	//		UI Methods
+	/////////////////////////////////////////////
+
+	public bool isCountdownPlaying() {
+		return countdown;
+	}
+
+	public void SetCountdownActive(bool toggle) {
+		countdown = toggle;
+	}
+		
+	/////////////////////////////////////////////
+	//		Data Persistent Methods
+	/////////////////////////////////////////////
+
+	public void SaveData (string str) {
+		switch(str) {
+		case "Player":
+			if (player == null)
+				player = GameObject.Find (str);
+
+			playerPos = player.transform.position;
+			break;
+
+		case "Enemy":
+			if (enemy == null)
+				enemy = GameObject.Find (str);
+
+			enemyPos = enemy.transform.position;
+			break;
+
+		case "Healthbar":
+			if (health == null)
+				health = GameObject.FindObjectOfType (typeof(Health)) as Health;
+
+			currHealth = health.GetCurrentHealth ();
+			break;
+		}
+
+	}
+
+	public void LoadData (string str) {
+		switch(str) {
+		case "Player":
+			if (player == null)
+				player = GameObject.Find (str);
+
+			player.transform.position = playerPos;
+			break;
+
+		case "Enemy":
+			if (enemy == null)
+				enemy = GameObject.Find (str);
+
+			enemyPos = enemyPos - new Vector2 (0, 5f);
+			enemy.transform.position = enemyPos;
+			break;
+
+		case "Healthbar":
+			if (health == null)
+				health = GameObject.FindObjectOfType (typeof(Health)) as Health;
+
+			health.SetCurrentHealth(currHealth);
+			break;
+		}
+
+	}
+		
 
 }

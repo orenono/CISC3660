@@ -50,11 +50,13 @@
      <Compile Include="Assets\scripts\ButtonBehaviorLv01.cs" />
      <Compile Include="Assets\scripts\CameraController.cs" />
      <Compile Include="Assets\scripts\CountChildren.cs" />
+     <Compile Include="Assets\scripts\Countdown.cs" />
      <Compile Include="Assets\scripts\Dialogue.cs" />
      <Compile Include="Assets\scripts\Dialogue2Script.cs" />
      <Compile Include="Assets\scripts\EnemyController.cs" />
      <Compile Include="Assets\scripts\FreeParallax.cs" />
      <Compile Include="Assets\scripts\GameController.cs" />
+     <Compile Include="Assets\scripts\Health.cs" />
      <Compile Include="Assets\scripts\HighlightText.cs" />
      <Compile Include="Assets\scripts\KnockingScript.cs" />
      <Compile Include="Assets\scripts\MenuScript.cs" />

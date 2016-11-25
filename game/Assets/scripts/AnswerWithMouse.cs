@@ -6,6 +6,8 @@ public class AnswerWithMouse : MonoBehaviour {
 	public static bool lockAnswer = false;
 
 	private AudioSource hoverAudio;
+	private AudioSource selectAudio;
+
 
 	// Use this for initialization
 	void Start () {
@@ -13,6 +15,8 @@ public class AnswerWithMouse : MonoBehaviour {
 		if (hoverAudio == null)
 			hoverAudio = GetComponent <AudioSource> ();
 
+		if (selectAudio == null)
+			selectAudio = GetComponent <AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -21,6 +25,7 @@ public class AnswerWithMouse : MonoBehaviour {
 	}
 
 	void OnMouseDown() {
+		selectAudio.Play ();
 
 		// Capture the clicked answer and store it 
 		QuestionController.selectedAnswer = gameObject.name;
@@ -28,11 +33,10 @@ public class AnswerWithMouse : MonoBehaviour {
 		// Lock the selected answer, so the player can't change it
 		QuestionController.choiceSelected = "y";
 		lockAnswer = true;
-
-
 	}
 
 	void OnMouseEnter() {
 		hoverAudio.Play ();
+
 	}
 }
