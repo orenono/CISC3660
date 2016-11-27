@@ -19,9 +19,9 @@ public class TextMovingScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		textPosition.Translate (-1 * speed, 0, 0);
+		textPosition.Translate (0, 1 * speed, 0);
 
-		if ((textPosition.position.x <= -15000) || Input.GetKeyDown ("space"))
+		if ((textPosition.position.y >= 1800) || Input.GetKeyDown ("space"))
 			LoadGame ();
 		else if (Input.GetKeyDown (KeyCode.Escape))  
 		{
