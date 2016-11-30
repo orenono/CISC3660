@@ -7,24 +7,24 @@ Things To Do - In order of importance (top is most the important).
 
 Feel free to suggest/change/edit whatever you like
 
-*A countdown
-*Store how many houses the player has entered
+***Crucial Elements***
 *Change dialogue for different streets                            O.L.
 *Create a game over scene                                         O.L.
 *Create a win game scene                                          O.L.
-*If you got most answers wrong, do you instantly get killed?
 *Create a walking through the house scene                         O.L.
 *Edit knocking scene                                              O.L.
-
-
-***Must Do***
 *Fix “pause” bug (audio is still playing)                         JW
 *speed                                                            JW
+*Implement questions and answers  
+*If you got most answers wrong, do you instantly get killed?
+*A countdown
+*Store how many houses the player has entered
+
+***Must Do***
 *persistent data                                                  JW
 *high score                                                       JW
 *Add help snippets? (Using the Destroy(instructions, seconds))    JW      //just in time instuction
 *Add directions scene                                             O.L.
-*Implement questions and answers  
 *Setting (required by professor)
 
 
