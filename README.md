@@ -21,10 +21,10 @@ Feel free to suggest/change/edit whatever you like
 *Store how many houses the player has entered
 
 ***Must Do***
+*Add directions scene                                             O.L.
 *persistent data                                                  JW
 *high score                                                       JW
 *Add help snippets? (Using the Destroy(instructions, seconds))    JW      //just in time instuction
-*Add directions scene                                             O.L.
 *Setting (required by professor)
 
 
