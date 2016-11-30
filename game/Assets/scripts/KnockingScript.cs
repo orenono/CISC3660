@@ -17,15 +17,13 @@ public class KnockingScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (audio.time > 8) {
+		if (audio.time > 8 || Input.GetKeyDown (KeyCode.Space)) {
 			audio.Stop ();
 			LoadNextScene ();
 
 		} else if (Input.GetKeyDown (KeyCode.Escape)) {
-			SceneManager.LoadScene ("startMenu");
+			SceneManager.LoadScene ("startMenu");	
 		}
-		
-
 	}
 
 	void LoadNextScene()

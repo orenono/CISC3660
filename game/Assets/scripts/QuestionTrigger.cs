@@ -31,7 +31,7 @@ public class QuestionTrigger : MonoBehaviour {
 			GameController.instance.SaveData ("Healthbar");
 
 			SceneManager.LoadScene ("doorCutscene");
-
+			//SceneManager.LoadScene ("QA_scene");
 		}
 	}
 

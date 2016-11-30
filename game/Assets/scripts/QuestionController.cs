@@ -15,28 +15,27 @@ public class QuestionController : MonoBehaviour {
 
 	public static string selectedAnswer;
 	public static string choiceSelected = "n";
-	public static int counter = 0;
+	public int qCounter = 0;
 
 	// Use this for initialization
 	void Start () {
-		//counter = qTrigger.GetComponent<QuestionTrigger>().GetCounter();
-		if (qTrigger.gameObject.CompareTag ("Trigger")) {
-			counter = qTrigger.gameObject.GetComponent<QuestionTrigger> ().GetCounter();
-		}
-		Debug.Log (counter);
+	
 	}
 
 	// Update is called once per frame
 	void Update () {
+		qCounter = GameController.instance.GetQuestionCounter ();
+		Debug.Log ("Question Counter: " + qCounter);
+
 
 		// Select a question from the array sequentially
-		populateQuestion (counter);
+		populateQuestion (qCounter);
 
 		if (choiceSelected == "y") {
 			choiceSelected = "n";
 
 			// Check the player's choice with the correct answer from the array
-			if (GetCorrectAnswer (counter) == selectedAnswer) {
+			if (GetCorrectAnswer (qCounter) == selectedAnswer) {
 				resultObj.GetComponent<TextMesh> ().text = "Correct!   Click next to continue";
 
 				GameController.instance.IncreaseScore ();
@@ -44,28 +43,28 @@ public class QuestionController : MonoBehaviour {
 
 			} 
 
-			if (GetCorrectAnswer (counter) != selectedAnswer) {
+			if (GetCorrectAnswer (qCounter) != selectedAnswer) {
 
-				switch (int.Parse(GetCorrectAnswer (counter))) {
+				switch (int.Parse(GetCorrectAnswer (qCounter))) {
 				case 1:
 					resultObj.GetComponent<TextMesh> ().text = "Wrong! The correct answer is the first choice!\n\t\t\tClick next to continue";
-					StartCoroutine(ShowCorrectAnswer (ans1, Color.yellow, 46));
+					StartCoroutine(ShowCorrectAnswer (ans1, Color.yellow, 30));
 					break;
 
 				case 2:
 					resultObj.GetComponent<TextMesh> ().text = "Wrong! The correct answer is the second choice!\n\t\t\tClick next to continue";
-					StartCoroutine(ShowCorrectAnswer (ans2, Color.yellow, 46));
+					StartCoroutine(ShowCorrectAnswer (ans2, Color.yellow, 30));
 
 					break;
 					
 				case 3:
 					resultObj.GetComponent<TextMesh> ().text = "Wrong! The correct answer is the third choice!\n\t\t\tClick next to continue";
-					StartCoroutine(ShowCorrectAnswer (ans3, Color.yellow, 46));	
+					StartCoroutine(ShowCorrectAnswer (ans3, Color.yellow, 30));	
 					break;
 					
 				case 4:
 					resultObj.GetComponent<TextMesh> ().text = "Wrong! The correct answer is the forth choice!\n\t\t\tClick next to continue";
-					StartCoroutine(ShowCorrectAnswer (ans4, Color.yellow, 46));
+					StartCoroutine(ShowCorrectAnswer (ans4, Color.yellow, 30));
 					break;
 				}
 			} 
@@ -101,7 +100,7 @@ public class QuestionController : MonoBehaviour {
 	public IEnumerator ShowCorrectAnswer(TextMesh tm, Color c, int fontSize) { 
 		tm.GetComponent<TextMesh> ().color = c;
 		tm.GetComponent<TextMesh> ().fontSize = fontSize;
-		for (int i = 0; i < 4; i++) {	
+		for (int i = 0; i < 3; i++) {	
 			yield return new WaitForSeconds (.1f);
 			tm.GetComponent<TextMesh> ().color = Color.red;
 			tm.GetComponent<TextMesh> ().fontSize = fontSize + 2;

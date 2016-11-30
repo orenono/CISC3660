@@ -24,25 +24,27 @@ public class NextButton : MonoBehaviour {
 
 	void OnMouseDown() {
 		nextButtonAudio.Play ();
+		int counter = GameController.instance.GetQuestionCounter ();
+
+
 
 		// Only allow the player to click next if they have picked an answer
 		if (AnswerWithMouse.lockAnswer == true) {	
 
 			// Change to another question and
 			// limit the counter within the question array
-			if (QuestionController.counter <= Questions.qa.GetLength (0)) {
-				QuestionController.counter++;
+			if (counter <= Questions.qa.GetLength (0)) {
+				GameController.instance.IncrementQuestionCounter ();
+				Debug.Log ("count in NextButton: " + counter);
 
-				// When it's the 4th question, change the next button text
-				if (QuestionController.counter % 3 == 0) {
+				// When it's the 3rd question, change the next button text
+				if (counter % 3 == 0) {
 					GetComponent<TextMesh> ().text = "Finish";
 				}
 
 				// Once the player hits 'Finish' button, change the scene
-				if (QuestionController.counter % 4 == 0) {
+				if (counter % 3 == 0) {
 
-					//QuestionController.counter = 0;
-					Debug.Log ("Changing scene to level01");
 					SceneManager.LoadScene ("level01");
 				}
 			}
@@ -52,10 +54,10 @@ public class NextButton : MonoBehaviour {
 
 		// Reset result text, answer text and colors
 		resultObj.GetComponent<TextMesh> ().text = "Pick an answer";	
-		qc.ResetAnswerColors (qc.ans1, Color.white, 36);
-		qc.ResetAnswerColors (qc.ans2, Color.white, 36);
-		qc.ResetAnswerColors (qc.ans3, Color.white, 36);
-		qc.ResetAnswerColors (qc.ans4, Color.white, 36);
+		qc.ResetAnswerColors (qc.ans1, Color.white, 30);
+		qc.ResetAnswerColors (qc.ans2, Color.white, 30);
+		qc.ResetAnswerColors (qc.ans3, Color.white, 30);
+		qc.ResetAnswerColors (qc.ans4, Color.white, 30);
 	}
 				
 }
