@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
 	private Animator animator;
 	private float moveHorizontal;
 	private float moveVertical;
+	private float speedBoost;
 
 	public GameObject startStreet, spawnStreet, policyStation;
 	public Vector2 spawnLocation;
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour {
 		animator = GetComponent<Animator> ();
 		isFacingRight = true;
 		speed = 3.0f;
+		speedBoost = 1.0f;
 
 		spawnLimit = 5;
 		spawnLocation = new Vector2 (startStreet.transform.position.x, startStreet.transform.position.y);
@@ -45,7 +47,15 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 		moveHorizontal = Input.GetAxis ("Horizontal");
 		moveVertical = Input.GetAxis ("Vertical");
-		Vector2 movement = new Vector2 (moveHorizontal * speed, moveVertical * speed);
+
+		if (GameController.instance.IsDebugging()) {
+			if (Input.GetKeyDown (KeyCode.LeftShift))
+				speedBoost = 8.0f;
+			if (Input.GetKeyUp (KeyCode.LeftShift))
+				speedBoost = 1.0f;
+		}
+
+		Vector2 movement = new Vector2 (moveHorizontal * speed, moveVertical * speed * speedBoost);
 		MovePlayer (movement);
 
 		if ((moveHorizontal < 0 && isFacingRight) || (moveHorizontal > 0 && !isFacingRight))
@@ -101,11 +111,31 @@ public class PlayerController : MonoBehaviour {
 
 		}
 		if (other.gameObject.CompareTag ("PoliceStation")) {
-			Time.timeScale = 0.0f;
-			winTxt.enabled = true;
+			if (GameController.instance.GetCorrectAnswerCount () >= 22) {
+				Time.timeScale = 0.0f;
+				winTxt.fontSize = 70;
+				winTxt.text = "You Win!";
+				winTxt.enabled = true;
+			}
+			else {
+
+				winTxt.fontSize = 30;
+				winTxt.text = "You need at least 22 correct answers to enter!";
+				winTxt.enabled = true;
+			}
 		}
 
 	}
+
+	void OnTriggerExit2D (Collider2D other) {
+
+		if (other.gameObject.CompareTag ("PoliceStation")) {
+
+			winTxt.enabled = false;
+		}
+	}
+
+
 
 	// killing the player code
 	public bool IsPlayerDead () {
