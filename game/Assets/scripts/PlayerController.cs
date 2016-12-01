@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour {
 	
 	private Rigidbody2D rb2d;
 	public float speed;
+	public float speedAdjust;
+	public float speedUp;
 	public Health playerHealth;
 	private AudioSource audio;
 	private bool isFacingRight;
@@ -30,7 +32,9 @@ public class PlayerController : MonoBehaviour {
 		rb2d = GetComponent<Rigidbody2D> ();
 		animator = GetComponent<Animator> ();
 		isFacingRight = true;
-		speed = 3.0f;
+		speed = 2.0f;
+		speedAdjust = 1f;
+		speedUp = Time.time - 2;
 		//LoadPlayerPos (0, 2, 0);
 		spawnLimit = 5;
 		spawnLocation = new Vector2 (startStreet.transform.position.x, startStreet.transform.position.y);
@@ -42,7 +46,16 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 		moveHorizontal = Input.GetAxis ("Horizontal");
 		moveVertical = Input.GetAxis ("Vertical");
-		Vector2 movement = new Vector2 (moveHorizontal * speed, moveVertical * speed);
+		if (Time.time - speedUp < 1f)
+			speed = 4f;
+		else
+			speed = 2f;
+
+		if (moveHorizontal != 0 && moveVertical != 0)
+			speedAdjust = .77f;
+		else
+			speedAdjust = 1f;
+		Vector2 movement = new Vector2 (moveHorizontal * speed * speedAdjust, moveVertical * speed * speedAdjust);
 		MovePlayer (movement);
 
 		if ((moveHorizontal < 0 && isFacingRight) || (moveHorizontal > 0 && !isFacingRight))
@@ -94,6 +107,7 @@ public class PlayerController : MonoBehaviour {
 		if (other.gameObject.CompareTag ("Enemy")) {
 			animator.SetBool("hit", true);
 			playerHealth.DecreaseHealth ();
+			speedUp = Time.time;
 			//other.gameObject.SetActive (false);
 
 		}
@@ -102,6 +116,12 @@ public class PlayerController : MonoBehaviour {
 			winTxt.enabled = true;
 		}
 
+	}
+
+	void OnTriggerExit2D (Collider2D other) {
+		if (other.gameObject.CompareTag ("Enemy")) {
+			animator.SetBool("hit", false);
+		}
 	}
 
 	// killing the player code

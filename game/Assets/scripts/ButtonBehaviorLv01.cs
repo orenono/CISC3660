@@ -56,13 +56,11 @@ public class ButtonBehaviorLv01 : MonoBehaviour {
 			dp.SetActive (false);
 		foreach (GameObject dp in DisplayWhenResumed)
 			dp.SetActive (true);
-
-
 	}
 
 	public void Menu()
 	{
-		SceneManager.LoadScene ("main");
+		SceneManager.LoadScene ("startMenu");
 	}
 
 	public void QuitGame() {

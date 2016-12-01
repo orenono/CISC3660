@@ -21,6 +21,7 @@ public class EnemyController : MonoBehaviour {
 		rb2d = GetComponent<Rigidbody2D> ();
 		animator = GetComponent<Animator> ();
 		isFacingRight = false;
+		speed = 2f;
 
 	}
 	
@@ -32,11 +33,10 @@ public class EnemyController : MonoBehaviour {
 
 		// Chase the player algorithm
 		range = Vector2.Distance(transform.position, target.position);
-		speed = target.GetComponent<PlayerController> ().speed;
 
 		if (range > minDistance)
 		{
-			transform.position = Vector2.MoveTowards(transform.position, target.position, speed * 2 * Time.deltaTime);
+			transform.position = Vector2.MoveTowards(transform.position, target.position, speed * 2.3f * Time.deltaTime);
 		}			
 	
 	}
@@ -56,6 +56,7 @@ public class EnemyController : MonoBehaviour {
 	void OnTriggerExit2D (Collider2D other) {
 		if (other.gameObject.CompareTag ("Player")) {
 			damageIndicator.SetActive (false);
+			animator.SetBool ("attack", false);
 		}
 	}
 		
