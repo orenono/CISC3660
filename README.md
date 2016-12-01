@@ -8,7 +8,7 @@ Things To Do - In order of importance (top is most the important).
 Feel free to suggest/change/edit whatever you like
 
 ***Crucial Elements***
-*Change dialogue for different streets                            O.L.
+*Change dialogue for different streets                            O.L.   
 *Create a game over scene                                         O.L.
 *Create a win game scene                                          O.L.
 *Create a walking through the house scene                         O.L.
@@ -24,9 +24,9 @@ Feel free to suggest/change/edit whatever you like
                                                                   JW
 
 ***Must Do***
-*Add directions scene                                             O.L.
-*Setting (required by professor)                                  JW
-
+*Add directions scene                                                O.L.   Done! Just need to update text when final gameplay is done
+*Setting (required by professor)                                     JW
+*Implementing the educational notes when you get a question wrong
 
 ***If have time***
 *Add elements like cars, and other objects                        JW 
@@ -35,4 +35,4 @@ Feel free to suggest/change/edit whatever you like
 
 Write your notes/suggestions/updates here:
 
-Oren: I wrote my initials next to the things I can do. 
+
