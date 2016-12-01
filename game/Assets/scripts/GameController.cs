@@ -7,6 +7,7 @@
 
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 
@@ -14,6 +15,7 @@ public class GameController : MonoBehaviour {
 
 	private int correctAns = 0;
 	private bool[] isTriggerUsed = new bool[8];
+	private int questionCounter = 1;
 	private bool countdown = false;
 	GameObject player;
 	Vector2 playerPos;
@@ -21,6 +23,7 @@ public class GameController : MonoBehaviour {
 	Vector2 enemyPos;
 	Health health;
 	float currHealth;
+	bool debuggingGame = true;
 
 	void Awake() {
 
@@ -42,6 +45,20 @@ public class GameController : MonoBehaviour {
 
 	}
 
+	void Update () {
+		if (IsDebugging()) {
+			if (Input.GetKeyDown (KeyCode.Alpha1))
+				SceneManager.LoadScene ("level01");
+
+			if (Input.GetKeyDown (KeyCode.Alpha2))
+				SceneManager.LoadScene ("QA_scene");
+		}
+	}
+
+	public bool IsDebugging() {
+		return debuggingGame;
+	}
+
 	/////////////////////////////////////////////
 	//		QuestionTrigger Methods
 	/////////////////////////////////////////////
@@ -54,6 +71,14 @@ public class GameController : MonoBehaviour {
 		return isTriggerUsed[index];
 	}
 
+	public int GetQuestionCounter() {
+		return questionCounter;
+	}
+
+	public void IncrementQuestionCounter() {
+		questionCounter++;
+	}
+
 	/////////////////////////////////////////////
 	//		Score Methods
 	/////////////////////////////////////////////
@@ -63,7 +88,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	public int GetNumberOfQuestions () {
-		return Questions.qa.GetLength (0);
+		return Questions.qa.GetLength (0) - 1;
 	}
 
 	public int GetCorrectAnswerCount() {
