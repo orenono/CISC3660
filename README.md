@@ -13,18 +13,12 @@ Feel free to suggest/change/edit whatever you like
 *Create a win game scene                                          O.L.
 *Create a walking through the house scene                         O.L.
 *Edit knocking scene                                              O.L.
-*Fix “pause” bug (audio is still playing)                         JW
-*speed                                                            JW
 *Implement questions and answers  
 *If you got most answers wrong, do you instantly get killed?
-*A countdown
 *Store how many houses the player has entered
 
 ***Must Do***
 *Add directions scene                                             O.L.
-*persistent data                                                  JW
-*high score                                                       JW
-*Add help snippets? (Using the Destroy(instructions, seconds))    JW      //just in time instuction
 *Setting (required by professor)
 
 
