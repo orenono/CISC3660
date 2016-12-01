@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour {
 		spawnLimit = 5;
 		spawnLocation = new Vector2 (startStreet.transform.position.x, startStreet.transform.position.y);
 		winTxt.enabled = false;
-		GameController.instance.LoadPlayerPosition (); // this does not work as of right now
+		//GameController.instance.LoadPlayerPosition (); // this does not work as of right now
 	}
 	
 	// Update is called once per frame
@@ -172,5 +172,12 @@ public class PlayerController : MonoBehaviour {
 		playerScale.x = playerScale.x * -1;
 		transform.localScale = playerScale;
 		isFacingRight = !isFacingRight;
+	}
+	public void muteAudio() {
+		audio.mute = true;
+	}
+
+	public void unmuteAudio() {
+		audio.mute = false;
 	}
 }

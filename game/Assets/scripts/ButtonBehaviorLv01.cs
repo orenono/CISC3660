@@ -8,6 +8,11 @@ public class ButtonBehaviorLv01 : MonoBehaviour {
 	public GameObject[] DisplayWhenPaused;
 	public GameObject[] DisplayWhenResumed;
 	public bool paused;
+	public Transform playerTarget;
+	public Transform enemyTarget;
+	public Transform background;
+
+
 
 
 
@@ -43,6 +48,9 @@ public class ButtonBehaviorLv01 : MonoBehaviour {
 	{
 		
 		paused = true;
+		playerTarget.GetComponent<PlayerController> ().muteAudio ();
+		enemyTarget.GetComponent<EnemyController> ().muteAudio ();
+		background.GetComponent<backgroundMusic> ().muteAudio ();
 		Time.timeScale = 0.0f;
 		//pauseText.SetActive (true);
 		foreach (GameObject dp in DisplayWhenPaused)
@@ -55,6 +63,9 @@ public class ButtonBehaviorLv01 : MonoBehaviour {
 	public void ResumeGame()
 	{
 		paused = false;
+		playerTarget.GetComponent<PlayerController> ().unmuteAudio ();
+		enemyTarget.GetComponent<EnemyController> ().unmuteAudio ();
+		background.GetComponent<backgroundMusic> ().unmuteAudio ();
 		Time.timeScale = 1.0f;
 		//pauseText.SetActive (false); 
 		foreach (GameObject dp in DisplayWhenPaused)

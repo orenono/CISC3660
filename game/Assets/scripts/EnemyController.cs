@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour {
 	private Rigidbody2D rb2d;
 	public Transform target;
 	public float speed;
+	private float moveH, moveV;
 	private float minDistance = .5f; // default value is 1f
 	private float range;
 	private AudioSource caughtThePlayer;
@@ -21,13 +22,19 @@ public class EnemyController : MonoBehaviour {
 		rb2d = GetComponent<Rigidbody2D> ();
 		animator = GetComponent<Animator> ();
 		isFacingRight = false;
-		speed = 2f;
+		speed = 0f;
+		moveH = moveV = 0f;
 
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+		moveH = Input.GetAxis ("Horizontal");
+		moveV = Input.GetAxis ("Vertical");
+
+		if (moveH != 0 || moveV != 0)
+			speed = 2f;
 		if ((target.position.x - transform.position.x < 0 && isFacingRight) || (target.position.x - transform.position.x > 0 && !isFacingRight))
 			Flip ();
 
@@ -65,5 +72,13 @@ public class EnemyController : MonoBehaviour {
 		playerScale.x = playerScale.x * -1;
 		transform.localScale = playerScale;
 		isFacingRight = !isFacingRight;
+	}
+
+	public void muteAudio() {
+		caughtThePlayer.mute = true;
+	}
+
+	public void unmuteAudio() {
+		caughtThePlayer.mute = false;
 	}
 }
