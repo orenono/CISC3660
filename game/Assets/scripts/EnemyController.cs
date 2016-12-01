@@ -33,8 +33,9 @@ public class EnemyController : MonoBehaviour {
 		moveH = Input.GetAxis ("Horizontal");
 		moveV = Input.GetAxis ("Vertical");
 
-		if (moveH != 0 || moveV != 0)
-			speed = 2.5f;
+		if (speed == 0)
+			if (moveH != 0 || moveV != 0)
+				speed = 2.5f;
 		if ((target.position.x - transform.position.x < 0 && isFacingRight) || (target.position.x - transform.position.x > 0 && !isFacingRight))
 			Flip ();
 

@@ -36,7 +36,7 @@ public class ButtonBehaviorLv01 : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (Time.time - time >= 3){
+		if (Time.time - time >= 3 && Time.time - time <= 4){
 			jit2.enabled = true;
 			Destroy(jit2,3);
 		}
