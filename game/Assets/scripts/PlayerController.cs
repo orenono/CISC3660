@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour {
 	private Collider2D enemy;
 	public GameObject startStreet, spawnStreet, policyStation;
 	public Vector2 spawnLocation;
-	public int spawnLimit;
 	public Text winTxt;
 
 	void Awake() {
@@ -38,7 +37,6 @@ public class PlayerController : MonoBehaviour {
 		speedAdjust = 1f;
 		speedUp = Time.time - 2;
 		//LoadPlayerPos (0, 2, 0);
-		spawnLimit = 5;
 		onTriggered = false;
 		spawnLocation = new Vector2 (startStreet.transform.position.x, startStreet.transform.position.y);
 		winTxt.enabled = false;
@@ -76,15 +74,10 @@ public class PlayerController : MonoBehaviour {
 			audio.Stop ();
 		}
 
-		if (this.transform.position.y >= spawnLocation.y && spawnLimit > 0) {
-			spawnLimit--;
+		if (this.transform.position.y >= spawnLocation.y ) {
 			spawnLocation = new Vector2 (spawnLocation.x, spawnLocation.y + 63);
 			Instantiate (spawnStreet, spawnLocation, Quaternion.identity);
 		} 
-		else if (spawnLimit == 0) {
-			spawnLocation = new Vector2 (spawnLocation.x, spawnLocation.y + 38);
-			Instantiate (policyStation, spawnLocation, Quaternion.identity);    
-		}
 	}
 
 
@@ -116,15 +109,8 @@ public class PlayerController : MonoBehaviour {
 			playerHealth.DecreaseHealth ();
 			speedUp = Time.time;
 			onTriggered = true;
-
 			//other.gameObject.SetActive (false);
-
 		}
-		if (other.gameObject.CompareTag ("PoliceStation")) {
-			Time.timeScale = 0.0f;
-			winTxt.enabled = true;
-		}
-
 	}
 
 	void OnTriggerExit2D (Collider2D other) {
