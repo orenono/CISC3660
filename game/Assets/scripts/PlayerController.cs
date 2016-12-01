@@ -14,7 +14,9 @@ public class PlayerController : MonoBehaviour {
 	private Animator animator;
 	private float moveHorizontal;
 	private float moveVertical;
+	private bool onTriggered;
 
+	private Collider2D enemy;
 	public GameObject startStreet, spawnStreet, policyStation;
 	public Vector2 spawnLocation;
 	public int spawnLimit;
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour {
 		speedUp = Time.time - 2;
 		//LoadPlayerPos (0, 2, 0);
 		spawnLimit = 5;
+		onTriggered = false;
 		spawnLocation = new Vector2 (startStreet.transform.position.x, startStreet.transform.position.y);
 		winTxt.enabled = false;
 		//GameController.instance.LoadPlayerPosition (); // this does not work as of right now
@@ -46,8 +49,8 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 		moveHorizontal = Input.GetAxis ("Horizontal");
 		moveVertical = Input.GetAxis ("Vertical");
-		if (Time.time - speedUp < 1f)
-			speed = 4f;
+		if (Time.time - speedUp < 1.5f)
+			speed = 3f;
 		else
 			speed = 2f;
 
@@ -61,6 +64,9 @@ public class PlayerController : MonoBehaviour {
 		if ((moveHorizontal < 0 && isFacingRight) || (moveHorizontal > 0 && !isFacingRight))
 			Flip ();
 
+		if (onTriggered && Time.time - speedUp > 1.5f)
+			OnTriggerEnter2D (enemy);
+			
 		//make footsteps sound when player moves
 		if (IsMoving () && audio.isPlaying == false) {
 			audio.Play ();
@@ -105,9 +111,12 @@ public class PlayerController : MonoBehaviour {
 	// Decrease player's health if the enemy collides with it
 	void OnTriggerEnter2D (Collider2D other) {
 		if (other.gameObject.CompareTag ("Enemy")) {
+			enemy = other;
 			animator.SetBool("hit", true);
 			playerHealth.DecreaseHealth ();
 			speedUp = Time.time;
+			onTriggered = true;
+
 			//other.gameObject.SetActive (false);
 
 		}
@@ -121,6 +130,7 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerExit2D (Collider2D other) {
 		if (other.gameObject.CompareTag ("Enemy")) {
 			animator.SetBool("hit", false);
+			onTriggered = false;
 		}
 	}
 
