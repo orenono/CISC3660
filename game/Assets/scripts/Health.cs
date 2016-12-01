@@ -24,6 +24,10 @@ public class Health : MonoBehaviour {
 	public float GetCurrentHealth() {
 		return currHealth;
 	}
+
+	public void SetCurrentHealth (float h) {
+		currHealth = h;
+	}
 		
 	public void DecreaseHealth() {
 		if (currHealth > 0) {

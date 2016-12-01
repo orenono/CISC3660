@@ -101,7 +101,7 @@ public class QuestionController : MonoBehaviour {
 	public IEnumerator ShowCorrectAnswer(TextMesh tm, Color c, int fontSize) { 
 		tm.GetComponent<TextMesh> ().color = c;
 		tm.GetComponent<TextMesh> ().fontSize = fontSize;
-		for (int i = 0; i < 8; i++) {	
+		for (int i = 0; i < 4; i++) {	
 			yield return new WaitForSeconds (.1f);
 			tm.GetComponent<TextMesh> ().color = Color.red;
 			tm.GetComponent<TextMesh> ().fontSize = fontSize + 2;

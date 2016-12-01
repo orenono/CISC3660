@@ -23,6 +23,8 @@ public class KnockingScript : MonoBehaviour {
 
 		} else if (Input.GetKeyDown (KeyCode.Escape)) {
 			SceneManager.LoadScene ("startMenu");
+		} else if (Input.GetKeyDown (KeyCode.Space)) {
+			LoadNextScene ();
 		}
 		
 
