@@ -13,13 +13,19 @@ Feel free to suggest/change/edit whatever you like
 *Create a win game scene                                          O.L.
 *Create a walking through the house scene                         O.L.
 *Edit knocking scene                                              O.L.
-*Implement questions and answers  
 *If you got most answers wrong, do you instantly get killed?
 *Store how many houses the player has entered
+*Level 2, 3.                                                      JW
+
+***Elements needed for Complete Game***
+*Spawn player and enemy to the right location and health          JW       
+*Implement questions and answers  
+*Winning Condition??  (10 each stage, total 3 stages, just duplicate stage 1 for now)
+                                                                  JW
 
 ***Must Do***
 *Add directions scene                                             O.L.
-*Setting (required by professor)
+*Setting (required by professor)                                  JW
 
 
 ***If have time***
