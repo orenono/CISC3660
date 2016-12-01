@@ -25,7 +25,7 @@ public class InputScript : MonoBehaviour {
 		string n = input.text;
 		print (n);
 		GameControl.Instance.setName (n);
-		SceneManager.LoadScene ("menu");
+		SceneManager.LoadScene ("IntroCutscene");
 	}
 
 }
