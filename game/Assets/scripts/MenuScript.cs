@@ -9,6 +9,7 @@ public class MenuScript : MonoBehaviour {
 	public Button startButton;
 	public Button exitButton;
 	public Canvas playMenu;
+	//public InputField input;
 
 	// Use this for initialization
 	void Start () {
@@ -17,6 +18,7 @@ public class MenuScript : MonoBehaviour {
 		startButton = startButton.GetComponent<Button> ();
 		exitButton = exitButton.GetComponent<Button> ();
 		playMenu = playMenu.GetComponent < Canvas> ();
+		//input = GetComponent<InputField> ();
 
 		quitMenu.enabled = false;
 		playMenu.enabled = false;
@@ -50,6 +52,8 @@ public class MenuScript : MonoBehaviour {
 
 	public void StartGame()
 	{
+		//string pName = input.text;
+		//GameControl.Instance.setName (pName);
 		SceneManager.LoadScene("IntroCutscene");
 	}
 

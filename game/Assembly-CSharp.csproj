@@ -45,7 +45,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\HighScore.cs" />
      <Compile Include="Assets\scripts\AnswerWithMouse.cs" />
      <Compile Include="Assets\scripts\ButtonBehavior.cs" />
      <Compile Include="Assets\scripts\ButtonBehaviorLv01.cs" />
@@ -56,9 +55,12 @@
      <Compile Include="Assets\scripts\Dialogue2Script.cs" />
      <Compile Include="Assets\scripts\EnemyController.cs" />
      <Compile Include="Assets\scripts\FreeParallax.cs" />
+     <Compile Include="Assets\scripts\GameControl.cs" />
      <Compile Include="Assets\scripts\GameController.cs" />
      <Compile Include="Assets\scripts\Health.cs" />
+     <Compile Include="Assets\scripts\HighScore.cs" />
      <Compile Include="Assets\scripts\HighlightText.cs" />
+     <Compile Include="Assets\scripts\InputScript.cs" />
      <Compile Include="Assets\scripts\KnockingScript.cs" />
      <Compile Include="Assets\scripts\ManualScript.cs" />
      <Compile Include="Assets\scripts\MenuScript.cs" />

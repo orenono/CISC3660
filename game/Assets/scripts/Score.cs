@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class Score : MonoBehaviour {
 	public Text scoreText;
@@ -21,4 +23,25 @@ public class Score : MonoBehaviour {
 				GameController.instance.GetNumberOfQuestions();
 	}
 		
+
+
+	public Text scoreTxt;
+	public Text nameTxt;
+	public Text levelTxt;
+	int targetScore;
+
+
+	public void IncreaseScore(int addend)
+	{
+		GameControl.Instance.increaseScore (addend);
+		int score = GameControl.Instance.getScore ();
+
+	}
+
+	public void IncreaseScore ()
+	{
+		IncreaseScore (1);
+	}
+
+
 }

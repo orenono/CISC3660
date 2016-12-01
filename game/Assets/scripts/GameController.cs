@@ -85,6 +85,7 @@ public class GameController : MonoBehaviour {
 
 	public void IncreaseScore() {
 		correctAns++;
+		GameControl.Instance.increaseScore (1);
 	}
 
 	public int GetNumberOfQuestions () {

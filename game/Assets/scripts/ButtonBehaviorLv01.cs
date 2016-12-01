@@ -15,6 +15,7 @@ public class ButtonBehaviorLv01 : MonoBehaviour {
 	public Text jit1;
 	public Text jit2;
 
+	const int NUM_SCORES = 5;
 
 	// Use this for initialization
 	void Start () {
@@ -81,10 +82,48 @@ public class ButtonBehaviorLv01 : MonoBehaviour {
 
 	public void Menu()
 	{
+		int pScore = GameControl.Instance.getScore ();
+		string pName = GameControl.Instance.getName ();
+
+		string scoreKey = "HighScore";
+		string nameKey = "HighScoreName";
+
+		for (int i = 0; i < NUM_SCORES; i++) {
+			string curNameKey = (nameKey + i).ToString();
+			string curScoreKey = (scoreKey + i).ToString();
+
+			if (!(PlayerPrefs.HasKey (curScoreKey))) {
+				print ("no such score");
+				PlayerPrefs.SetInt (curScoreKey, pScore);
+				PlayerPrefs.SetString (curNameKey, pName);
+			} 
+
+			else {
+				int score = PlayerPrefs.GetInt (curScoreKey);
+
+
+				if (pScore > score) {
+					int tempScore = score;
+					string tempName = PlayerPrefs.GetString (curNameKey);
+
+					PlayerPrefs.SetInt (curScoreKey, pScore);
+					PlayerPrefs.SetString (curNameKey, pName);
+
+					pName = tempName;
+					pScore = tempScore;
+				}
+			}
+		}		
+
+		for (int i = 0; i < NUM_SCORES; i++)
+		{
+			print (PlayerPrefs.GetString ("HighScoreName"+i) + " " + PlayerPrefs.GetInt ("HighScore" + i));
+		}
 		SceneManager.LoadScene ("startMenu");
 	}
 
 	public void QuitGame() {
 		Application.Quit ();
 	}
+		
 }
