@@ -47,16 +47,35 @@ public class MenuScript : MonoBehaviour {
 		startButton.enabled = false;
 
 	}
-		public void StartGame()
-		{
-			SceneManager.LoadScene("IntroCutscene");
-		}
 
-		public void ExitGame()
-		{
-			Application.Quit ();
-		}
-
-
+	public void StartGame()
+	{
+		SceneManager.LoadScene("IntroCutscene");
 	}
+
+	public void ExitGame()
+	{
+		Application.Quit ();
+	}
+
+	public void HighScore()
+	{
+		SceneManager.LoadScene("HighScore");
+	}
+
+	public void Instuction()
+	{
+		SceneManager.LoadScene("Instuction");
+	}
+
+	public void Setting()
+	{
+		SceneManager.LoadScene("Setting");
+	}
+
+	public void returnToMain()
+	{
+		SceneManager.LoadScene("startMenu");
+	}
+}
 	
