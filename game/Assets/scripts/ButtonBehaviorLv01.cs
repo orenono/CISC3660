@@ -11,15 +11,13 @@ public class ButtonBehaviorLv01 : MonoBehaviour {
 	public Transform playerTarget;
 	public Transform enemyTarget;
 	public Transform background;
-
-
-
+	public float time;
+	public Text jit1;
+	public Text jit2;
 
 
 	// Use this for initialization
 	void Start () {
-
-
 		DisplayWhenPaused = GameObject.FindGameObjectsWithTag("Paused");
 		foreach (GameObject dp in DisplayWhenPaused)
 			dp.SetActive (false);
@@ -27,7 +25,10 @@ public class ButtonBehaviorLv01 : MonoBehaviour {
 		DisplayWhenResumed = GameObject.FindGameObjectsWithTag("Unpaused");
 		foreach (GameObject dp in DisplayWhenResumed)
 			dp.SetActive (true);
-	
+		time = Time.time;
+		jit2.enabled = false;
+		Destroy (jit1, 3);
+
 
 		//pauseText.SetActive(false);
 		paused = false;
@@ -35,6 +36,10 @@ public class ButtonBehaviorLv01 : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (Time.time - time >= 3){
+			jit2.enabled = true;
+			Destroy(jit2,3);
+		}
 		if (Input.GetButtonDown ("Jump") && !paused) 
 			PauseGame ();
 		else if (Input.GetButtonDown ("Jump") && paused) 

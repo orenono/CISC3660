@@ -34,7 +34,7 @@ public class EnemyController : MonoBehaviour {
 		moveV = Input.GetAxis ("Vertical");
 
 		if (moveH != 0 || moveV != 0)
-			speed = 2f;
+			speed = 2.5f;
 		if ((target.position.x - transform.position.x < 0 && isFacingRight) || (target.position.x - transform.position.x > 0 && !isFacingRight))
 			Flip ();
 
@@ -43,7 +43,7 @@ public class EnemyController : MonoBehaviour {
 
 		if (range > minDistance)
 		{
-			transform.position = Vector2.MoveTowards(transform.position, target.position, speed * 2.3f * Time.deltaTime);
+			transform.position = Vector2.MoveTowards(transform.position, target.position, speed * 1.7f * Time.deltaTime);
 		}			
 	
 	}
