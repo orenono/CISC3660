@@ -18,7 +18,7 @@ Feel free to suggest/change/edit whatever you like
 *Level 2.                                                         JW
 
 ***Elements needed for Complete Game***
-*Spawn player and enemy to the right location and health          JW       
+*Spawn player and enemy to the right location and health                 
 *Implement questions and answers  
 *Winning Condition??  (12 each stage, total 2 stages, just duplicate stage 1 for now)   JW
                                                                   
