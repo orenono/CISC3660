@@ -25,8 +25,6 @@ public class QuestionController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		qCounter = GameController.instance.GetQuestionCounter ();
-		Debug.Log ("Question Counter: " + qCounter);
-
 
 		// Select a question from the array sequentially
 		populateQuestion (qCounter);
@@ -39,31 +37,28 @@ public class QuestionController : MonoBehaviour {
 				resultObj.GetComponent<TextMesh> ().text = "Correct!   Click next to continue";
 
 				GameController.instance.IncreaseScore ();
-				//Debug.Log ("Correct answer count: " + GameController.instance.GetCorrectAnswerCount ());
-
 			} 
 
 			if (GetCorrectAnswer (qCounter) != selectedAnswer) {
 
 				switch (int.Parse(GetCorrectAnswer (qCounter))) {
 				case 1:
-					resultObj.GetComponent<TextMesh> ().text = "Wrong! The correct answer is the first choice!\n\t\t\tClick next to continue";
+					resultObj.GetComponent<TextMesh> ().text = "Wrong! " + GetExplanation(qCounter);
 					StartCoroutine(ShowCorrectAnswer (ans1, Color.yellow, 30));
 					break;
 
 				case 2:
-					resultObj.GetComponent<TextMesh> ().text = "Wrong! The correct answer is the second choice!\n\t\t\tClick next to continue";
+					resultObj.GetComponent<TextMesh> ().text = "Wrong! " + GetExplanation(qCounter);
 					StartCoroutine(ShowCorrectAnswer (ans2, Color.yellow, 30));
-
 					break;
 					
 				case 3:
-					resultObj.GetComponent<TextMesh> ().text = "Wrong! The correct answer is the third choice!\n\t\t\tClick next to continue";
+					resultObj.GetComponent<TextMesh> ().text = "Wrong! " + GetExplanation(qCounter);
 					StartCoroutine(ShowCorrectAnswer (ans3, Color.yellow, 30));	
 					break;
 					
 				case 4:
-					resultObj.GetComponent<TextMesh> ().text = "Wrong! The correct answer is the forth choice!\n\t\t\tClick next to continue";
+					resultObj.GetComponent<TextMesh> ().text = "Wrong! " + GetExplanation(qCounter);
 					StartCoroutine(ShowCorrectAnswer (ans4, Color.yellow, 30));
 					break;
 				}
@@ -86,6 +81,10 @@ public class QuestionController : MonoBehaviour {
 
 	public string GetCorrectAnswer(int questionIndex) {
 		return Questions.qa [questionIndex, 5]; // the answer is stored in the 5th position
+	}
+
+	public string GetExplanation(int questionIndex) {
+		return Questions.qa [questionIndex, 6]; // explanation is stored in the 6th position
 	}
 
 	// This enables/disables the player from clicking on the answer choices

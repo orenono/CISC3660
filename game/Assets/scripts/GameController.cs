@@ -14,16 +14,16 @@ public class GameController : MonoBehaviour {
 	public static GameController instance;
 
 	private int correctAns = 0;
-	private bool[] isTriggerUsed = new bool[8];
+	private bool[] isTriggerUsed = new bool[11];
 	private int questionCounter = 1;
+	public int questionsPerHouse = 3; // change this to the number of questions you want per trigger 
 	private bool countdown = false;
 	GameObject player;
 	Vector2 playerPos;
 	GameObject enemy;
 	Vector2 enemyPos;
-	Health health;
-	float currHealth;
-	bool debuggingGame = true;
+	public float playerHealth = 100;
+	bool debuggingGame = true; // Set this to false on final build
 
 	void Awake() {
 
@@ -131,12 +131,6 @@ public class GameController : MonoBehaviour {
 			enemyPos = enemy.transform.position;
 			break;
 
-		case "Healthbar":
-			if (health == null)
-				health = GameObject.FindObjectOfType (typeof(Health)) as Health;
-
-			currHealth = health.GetCurrentHealth ();
-			break;
 		}
 
 	}
@@ -158,12 +152,6 @@ public class GameController : MonoBehaviour {
 			enemy.transform.position = enemyPos;
 			break;
 
-		case "Healthbar":
-			if (health == null)
-				health = GameObject.FindObjectOfType (typeof(Health)) as Health;
-
-			health.SetCurrentHealth(currHealth);
-			break;
 		}
 
 	}
