@@ -10,10 +10,10 @@ public class MenuScript : MonoBehaviour {
 	public Button exitButton;
 	public Canvas playMenu;
 	public InputField input;
+	public Slider musicSlider;
 
 	// Use this for initialization
 	void Start () {
-
 		quitMenu = quitMenu.GetComponent<Canvas> ();
 		startButton = startButton.GetComponent<Button> ();
 		exitButton = exitButton.GetComponent<Button> ();
@@ -82,5 +82,11 @@ public class MenuScript : MonoBehaviour {
 	{
 		SceneManager.LoadScene("startMenu");
 	}
+
+	public void OnMusicVolumeChange() {
+		GameControl.Instance.musicVolume = musicSlider.value;
+	}
+
+
 }
 	

@@ -5,6 +5,8 @@ public class GameControl : MonoBehaviour {
 
 	public string playerName;
 	public int score;
+	public float musicVolume;
+
 
 	public static GameControl Instance;
 
@@ -12,6 +14,7 @@ public class GameControl : MonoBehaviour {
 	void Start () {
 		playerName = "";
 		score = 0;
+		musicVolume = 1f;
 	}
 
 	void Awake()
@@ -48,7 +51,6 @@ public class GameControl : MonoBehaviour {
 	{
 		return playerName;
 	}
-
 
 }
 
