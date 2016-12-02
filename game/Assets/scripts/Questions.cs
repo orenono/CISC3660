@@ -12,7 +12,7 @@ public class Questions : MonoBehaviour {
 			"",
 			"",
 			"",
-
+			"",
 		},
 
 		{
@@ -22,7 +22,7 @@ public class Questions : MonoBehaviour {
 			"",
 			"",
 			"2",
-
+			"some tumors are not cancerous. \nThose tumors are called benign tumors, which do not \nspread to other parts of the body",
 		},
 
 		{
@@ -32,6 +32,7 @@ public class Questions : MonoBehaviour {
 			"Abnormal cell growth",
 			"None of the above defines cancer",
 			"3",
+			"",
 		},
 
 		{
@@ -41,6 +42,7 @@ public class Questions : MonoBehaviour {
 			"Weight loss",
 			"All may be associated symptoms with cancer",
 			"4",
+			"",
 		},
 
 		{
@@ -49,7 +51,8 @@ public class Questions : MonoBehaviour {
 			"False",
 			"",
 			"",
-			"2"
+			"2",
+			"only a 100 types of cancer are known to affect humans",
 		},
 
 		{
@@ -59,6 +62,7 @@ public class Questions : MonoBehaviour {
 			"Lack of physical activity",
 			"All of the above may contribute to the development of cancer",
 			"4",
+			"",
 		},
 
 		{
@@ -68,6 +72,7 @@ public class Questions : MonoBehaviour {
 			"",
 			"",
 			"2",
+			"tobacco use cause about 22% of cancer deaths",
 		},
 
 		{
@@ -77,6 +82,7 @@ public class Questions : MonoBehaviour {
 			"",
 			"",
 			"2",
+			"",
 		},
 
 		{
@@ -86,6 +92,7 @@ public class Questions : MonoBehaviour {
 			"",
 			"",
 			"1",
+			"",
 		},
 
 		{
@@ -95,6 +102,7 @@ public class Questions : MonoBehaviour {
 			"Avoidance of programmed cell death",
 			"",
 			"3",
+			"",
 		},
 
 		{
@@ -104,6 +112,7 @@ public class Questions : MonoBehaviour {
 			"It is not possible to prove what causes a specific cancer",
 			"Both 2nd and 3rd choices are correct",
 			"4",
+			"environmental factors such as pollution, \ntobacco, diet and opposite and infections are \nconsidered to contribute around 90-95% of cancer cases",
 		},
 
 		{
@@ -113,6 +122,7 @@ public class Questions : MonoBehaviour {
 			"Benign",
 			"Non of the above",
 			"2",
+			"",
 		},
 
 		{
@@ -122,6 +132,7 @@ public class Questions : MonoBehaviour {
 			"Prostate",
 			"Colon and rectum",
 			"1",
+			"",
 		},
 
 		{
@@ -131,6 +142,7 @@ public class Questions : MonoBehaviour {
 			"Initiation",
 			"Non of the above",
 			"3",
+			"",
 		},
 
 		{
@@ -140,6 +152,7 @@ public class Questions : MonoBehaviour {
 			"",
 			"",
 			"1",
+			"",
 		},
 
 		{
@@ -149,6 +162,8 @@ public class Questions : MonoBehaviour {
 			"",
 			"",
 			"2",
+			"stage 4 cancer is considered the highest stage in \nwhich the cancer has spread into many areas",
+
 		},
 
 		{
@@ -158,6 +173,7 @@ public class Questions : MonoBehaviour {
 			"Radiation",
 			"All of the above",
 			"4",
+			"",
 		},
 
 		{
@@ -167,6 +183,7 @@ public class Questions : MonoBehaviour {
 			"100,000",
 			"Half a million",
 			"4",
+			"",
 		},
 
 		{
@@ -176,6 +193,7 @@ public class Questions : MonoBehaviour {
 			"",
 			"",
 			"1",
+			"",
 		},
 
 		{
@@ -185,6 +203,7 @@ public class Questions : MonoBehaviour {
 			"Ovarian cancer",
 			"",
 			"2",
+			"although breast cancer is more common among women, \nlung cancer kills more women. Smoking is the primary \nrisk factor for lung cancer",
 		},
 
 		{
@@ -194,6 +213,7 @@ public class Questions : MonoBehaviour {
 			"Colon cancer",
 			"",
 			"2",
+			"although prostate cancer is much more common in men, \nlung cancer is still the deadliest cancer due to cigarette \nsmoking",
 		},
 
 		{
@@ -203,6 +223,7 @@ public class Questions : MonoBehaviour {
 			"Cancer that is derived from epithelial cells",
 			"Cancers that are found in the testicle of ovary",
 			"3",
+			"",
 		},
 
 		{
@@ -212,6 +233,7 @@ public class Questions : MonoBehaviour {
 			"",
 			"",
 			"1",
+			"",
 		},
 
 		{
@@ -221,6 +243,7 @@ public class Questions : MonoBehaviour {
 			"",
 			"",
 			"2",
+			"Lymphoma and leukemia are cancers that are connected \nto the lymph nodes and blood. Blastoma is a classication of cancer \nderived in embryonic tissue",
 		},
 
 		{
@@ -230,6 +253,7 @@ public class Questions : MonoBehaviour {
 			"Blastoma",
 			"Germ cell tumor",
 			"4",
+			"",
 		},
 
 		{
@@ -239,6 +263,7 @@ public class Questions : MonoBehaviour {
 			"",
 			"",
 			"2",
+			"Oncogenese are genes that promotes cell growth",
 		},
 
 		{
@@ -248,6 +273,7 @@ public class Questions : MonoBehaviour {
 			"",
 			"",
 			"1",
+			"",
 		},
 
 		{
@@ -257,6 +283,7 @@ public class Questions : MonoBehaviour {
 			"Both 1st and 2nd choices are tumor classification",
 			"Non of the above",
 			"3",
+			"",
 		},
 
 		{
@@ -266,6 +293,7 @@ public class Questions : MonoBehaviour {
 			"Tumor-Suppressor genes",
 			"Mitosis progression",
 			"4",
+			"",
 		},
 
 		{
@@ -275,6 +303,7 @@ public class Questions : MonoBehaviour {
 			"A gene",
 			"A type of blood disease",
 			"2",
+			"",
 		},
 
 		{
@@ -284,6 +313,7 @@ public class Questions : MonoBehaviour {
 			"",
 			"",
 			"2",
+			"",
 		},
 
 		{
@@ -293,6 +323,7 @@ public class Questions : MonoBehaviour {
 			"Obesity",
 			"Genetically modified foods",
 			"3",
+			"",
 		},
 
 		{
@@ -302,6 +333,7 @@ public class Questions : MonoBehaviour {
 			"",
 			"",
 			"1",
+			"",
 		},
 
 		{
@@ -311,7 +343,9 @@ public class Questions : MonoBehaviour {
 			"Causing cancer",
 			"Both 1st and 2nd choices are correct",
 			"1",
+			"",
 		}
+
 			
 	};
 

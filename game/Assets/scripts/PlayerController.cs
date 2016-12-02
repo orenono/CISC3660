@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour {
 		if (audio == null) {
 			audio = GetComponent<AudioSource> ();
 		}
+			
 	}
 
     // Use this for initialization
@@ -39,7 +40,6 @@ public class PlayerController : MonoBehaviour {
 		winTxt.enabled = false;
 
 		GameController.instance.LoadData ("Player"); 
-		//GameController.instance.LoadData ("Healthbar"); // doesn't work
 	
 	}
 	
@@ -79,6 +79,8 @@ public class PlayerController : MonoBehaviour {
 			spawnLocation = new Vector2 (spawnLocation.x, spawnLocation.y + 38);
 			Instantiate (policyStation, spawnLocation, Quaternion.identity);    
 		}
+
+		playerHealth.ShowHealth ();
 	}
 
 
@@ -107,6 +109,7 @@ public class PlayerController : MonoBehaviour {
 		if (other.gameObject.CompareTag ("Enemy")) {
 			animator.SetBool("hit", true);
 			playerHealth.DecreaseHealth ();
+
 			//other.gameObject.SetActive (false);
 
 		}
@@ -166,23 +169,6 @@ public class PlayerController : MonoBehaviour {
 		isFacingRight = !isFacingRight;
 	}
 
-/*
-	public void SavePlayerPos() {
-		PlayerPrefs.SetFloat ("X", transform.position.x);
-		PlayerPrefs.SetFloat ("Y", transform.position.y);
-		PlayerPrefs.SetFloat ("Z", transform.position.z);
-	}
-
-	public void LoadPlayerPos(float xOffset, float yOffset, float zOffset) {
-		//transform.position.x = PlayerPrefs.GetFloat ("X");
-		//transform.position.y = PlayerPrefs.GetFloat ("Y");
-		//transform.position.z = PlayerPrefs.GetFloat ("Z");
-
-		Vector3 playerPos = new Vector3 (PlayerPrefs.GetFloat ("X") + xOffset, PlayerPrefs.GetFloat ("Y") 
-										+ yOffset, PlayerPrefs.GetFloat ("Z") + zOffset);
-		transform.position = playerPos;
-	}
-	*/
 
 
 }
