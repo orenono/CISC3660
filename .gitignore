@@ -7,3 +7,5 @@ game/build1.app
 build1Mac.app
 Assembly-CSharp-Editor.csproj
 Assembly-CSharp-firstpass.csproj
+game.sln
+Assembly-CSharp.csproj
