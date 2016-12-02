@@ -8,6 +8,7 @@ public class MenuScript : MonoBehaviour {
 	public Canvas quitMenu;
 	public Button startButton;
 	public Button exitButton;
+	public Button instructionsButton;
 	public Canvas playMenu;
 
 	// Use this for initialization
@@ -17,6 +18,7 @@ public class MenuScript : MonoBehaviour {
 		startButton = startButton.GetComponent<Button> ();
 		exitButton = exitButton.GetComponent<Button> ();
 		playMenu = playMenu.GetComponent < Canvas> ();
+		instructionsButton = instructionsButton.GetComponent<Button>();
 
 		quitMenu.enabled = false;
 		playMenu.enabled = false;
@@ -27,6 +29,7 @@ public class MenuScript : MonoBehaviour {
 		quitMenu.enabled = true;
 		exitButton.enabled = false;
 		startButton.enabled = false;
+		instructionsButton.enabled = false;
 	}
 
 	public void DontQuitPress()
@@ -35,18 +38,24 @@ public class MenuScript : MonoBehaviour {
 		startButton.enabled = true;
 		exitButton.enabled = true;
 		playMenu.enabled = false;
+		instructionsButton.enabled = true;
 
 	}
 
 	public void PlayPress()
 	{
-
 		quitMenu.enabled = false;
 		playMenu.enabled = true;
 		exitButton.enabled = false;
 		startButton.enabled = false;
-
+		instructionsButton.enabled = false;
 	}
+
+	public void InstructionsPressed(){
+
+		SceneManager.LoadScene ("Instructions");
+	}
+
 		public void StartGame()
 		{
 			SceneManager.LoadScene("IntroCutscene");

@@ -5,3 +5,5 @@ game.userprefs
 game/build1.app/Contents/Data/Managed/etc/mono/2.0
 game/build1.app
 build1Mac.app
+Assembly-CSharp-Editor.csproj
+Assembly-CSharp-firstpass.csproj
