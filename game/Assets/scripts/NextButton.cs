@@ -6,6 +6,7 @@ public class NextButton : MonoBehaviour {
 	public Transform resultObj;
 	private AudioSource nextButtonAudio;
 	QuestionController qc;
+	public SpriteRenderer overlay;
 
 	// Use this for initialization
 	void Start () {
@@ -23,6 +24,7 @@ public class NextButton : MonoBehaviour {
 	}
 
 	void OnMouseDown() {
+
 		nextButtonAudio.Play ();
 		int counter = GameController.instance.GetQuestionCounter ();
 
@@ -43,7 +45,8 @@ public class NextButton : MonoBehaviour {
 
 				// Once it's the last question for the current trigger, change the scene
 				if (counter % segment == 0) {
-					SceneManager.LoadScene ("level01");
+					StartCoroutine (FadeToBlack());
+
 				}
 			}
 		}
@@ -57,5 +60,22 @@ public class NextButton : MonoBehaviour {
 		qc.ResetAnswerColors (qc.ans3, Color.white, 30);
 		qc.ResetAnswerColors (qc.ans4, Color.white, 30);
 	}
-				
+
+	// Fade to black before loading the next scene
+	public IEnumerator FadeToBlack() {
+		overlay.gameObject.SetActive (true);
+		overlay.color = Color.clear;
+
+		float rate = 1.0f / 1.2f;
+		float progress = 0.0f;
+
+		while (progress < 1.0f) {
+			overlay.color = Color.Lerp (Color.clear, Color.black, progress);
+			progress += rate * Time.deltaTime;
+			yield return null;
+		}
+
+		overlay.color = Color.black;
+		SceneManager.LoadScene ("level01");		
+		}
 }
