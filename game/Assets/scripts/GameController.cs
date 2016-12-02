@@ -16,14 +16,14 @@ public class GameController : MonoBehaviour {
 	private int correctAns = 0;
 	private bool[] isTriggerUsed = new bool[11];
 	private int questionCounter = 1;
-	public int questionsPerHouse = 3; // change this to the number of questions you want per trigger 
+	public int questionsPerHouse = 3; 
 	private bool countdown = false;
 	GameObject player;
 	Vector2 playerPos;
 	GameObject enemy;
 	Vector2 enemyPos;
 	public float playerHealth = 100;
-	bool debuggingGame = true; // Set this to false on final build
+	bool debuggingGame = false; // Set this to false on final build
 
 	void Awake() {
 
