@@ -8,12 +8,12 @@ public class Health : MonoBehaviour {
 	public Image healthbarColor;
 
 	private int maxHealth = 100;
-	private float currHealth = 100f;
+	private float currHealth;
 
 	// Use this for initialization
 	void Start () {
 		healthbarColor = healthbarColor.GetComponent<Image>();
-
+		currHealth = GameController.instance.playerHealth;
 	}
 	
 	// Update is called once per frame
@@ -22,19 +22,24 @@ public class Health : MonoBehaviour {
 	}
 
 	public float GetCurrentHealth() {
-		return currHealth;
+		return GameController.instance.playerHealth;
 	}
 
 	public void SetCurrentHealth (float h) {
-		currHealth = h;
+		GameController.instance.playerHealth = h;
 	}
 		
 	public void DecreaseHealth() {
-		if (currHealth > 0) {
+		if (GetCurrentHealth() > 0) {
+			currHealth = GameController.instance.playerHealth;
 			currHealth -= 25;
-			SetHealthBar (currHealth / maxHealth);
-			ChangeBarColor ();
+			SetCurrentHealth (currHealth);
 		}
+	}
+
+	public void ShowHealth() {
+		SetHealthBar (GameController.instance.playerHealth / maxHealth);
+		ChangeBarColor ();
 	}
 
 	public void SetHealthBar (float amount) {
@@ -42,6 +47,7 @@ public class Health : MonoBehaviour {
 	}
 
 	public void ChangeBarColor() {
+		currHealth = GameController.instance.playerHealth;
 		if (currHealth <= 100 && currHealth > 75) 
 			healthbarColor.color = new Color (0, 255, 0, 100); // green
 

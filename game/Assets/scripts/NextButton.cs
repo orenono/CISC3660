@@ -26,10 +26,9 @@ public class NextButton : MonoBehaviour {
 		nextButtonAudio.Play ();
 		int counter = GameController.instance.GetQuestionCounter ();
 
-
-
 		// Only allow the player to click next if they have picked an answer
 		if (AnswerWithMouse.lockAnswer == true) {	
+			int segment = GameController.instance.questionsPerHouse;
 
 			// Change to another question and
 			// limit the counter within the question array
@@ -37,14 +36,13 @@ public class NextButton : MonoBehaviour {
 				GameController.instance.IncrementQuestionCounter ();
 				Debug.Log ("count in NextButton: " + counter);
 
-				// When it's the 3rd question, change the next button text
-				if (counter % 3 == 0) {
+				// When it's the nth question, change the next button text
+				if (counter %  segment == 0) {
 					GetComponent<TextMesh> ().text = "Finish";
 				}
 
-				// Once the player hits 'Finish' button, change the scene
-				if (counter % 3 == 0) {
-
+				// Once it's the last question for the current trigger, change the scene
+				if (counter % segment == 0) {
 					SceneManager.LoadScene ("level01");
 				}
 			}
