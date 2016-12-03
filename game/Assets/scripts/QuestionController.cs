@@ -37,6 +37,7 @@ public class QuestionController : MonoBehaviour {
 				resultObj.GetComponent<TextMesh> ().text = "Correct!   Click next to continue";
 
 				GameController.instance.IncreaseScore ();
+				GameControl.Instance.increaseScore (1);
 			} 
 
 			if (GetCorrectAnswer (qCounter) != selectedAnswer) {

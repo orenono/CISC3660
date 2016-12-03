@@ -11,7 +11,7 @@ public class QuestionTrigger : MonoBehaviour {
 		gameObject.GetComponent<QuestionTrigger> ();
 		if (GameController.instance.GetTriggerUsed (int.Parse(gameObject.name)) == true) {
 			Debug.Log ("bool index: " + (int.Parse (gameObject.name)));
-			this.gameObject.SetActive (false);
+			//this.gameObject.SetActive (false);
 		}
 	}
 	

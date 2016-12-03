@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour {
 	public GameObject player;
@@ -15,7 +16,7 @@ public class Health : MonoBehaviour {
 		healthbarColor = healthbarColor.GetComponent<Image>();
 		currHealth = GameController.instance.playerHealth;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		transform.position = player.transform.position;
@@ -28,12 +29,14 @@ public class Health : MonoBehaviour {
 	public void SetCurrentHealth (float h) {
 		GameController.instance.playerHealth = h;
 	}
-		
+
 	public void DecreaseHealth() {
 		if (GetCurrentHealth() > 0) {
 			currHealth = GameController.instance.playerHealth;
 			currHealth -= 25;
 			SetCurrentHealth (currHealth);
+			if (currHealth <= 0)
+				SceneManager.LoadScene ("gameover");	
 		}
 	}
 

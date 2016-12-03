@@ -24,6 +24,7 @@ public class EnemyController : MonoBehaviour {
 		isFacingRight = false;
 		speed = 0f;
 		moveH = moveV = 0f;
+		GameController.instance.LoadData ("Enemy");
 
 	}
 	

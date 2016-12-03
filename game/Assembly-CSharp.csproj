@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\saveAndReturn.cs" />
      <Compile Include="Assets\scripts\AnswerWithMouse.cs" />
      <Compile Include="Assets\scripts\ButtonBehavior.cs" />
      <Compile Include="Assets\scripts\ButtonBehaviorLv01.cs" />
@@ -75,7 +76,9 @@
      <Compile Include="Assets\scripts\backgroundMusic.cs" />
      <Compile Include="Assets\scripts\main.cs" />
      <Compile Include="Assets\scripts\volume.cs" />
-     <Compile Include="Assets\volumeSetting.cs" />
+     <Compile Include="Assets\scripts\volumeSetting.cs" />
+     <Compile Include="Assets\scripts\winCheck.cs" />
+     <Compile Include="Assets\scripts\winCheckLV2.cs" />
      <None Include="Assets\cancer_files\themedata.xml" />
      <None Include="Assets\Fonts\talkies\talkies.txt" />
      <None Include="Assets\Fonts\alice_in_wonderland\Shhhst!.txt" />

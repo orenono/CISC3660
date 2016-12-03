@@ -27,6 +27,11 @@ public class GameControl : MonoBehaviour {
 		}
 	}
 
+	public void setToZero() {
+		playerName = "";
+		score = 0;
+	}
+
 	public void setScore(int s)
 	{
 		score = s;
@@ -52,5 +57,9 @@ public class GameControl : MonoBehaviour {
 		return playerName;
 	}
 
+	public float getmusicVolume ()
+	{
+		return musicVolume;
+	}
 }
 

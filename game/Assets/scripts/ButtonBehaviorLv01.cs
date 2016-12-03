@@ -12,10 +12,11 @@ public class ButtonBehaviorLv01 : MonoBehaviour {
 	public Transform enemyTarget;
 	public Transform background;
 	public float time;
-	public Text jit1;
-	public Text jit2;
+	public Text JIT1;
+	public Text JIT2;
 
 	const int NUM_SCORES = 5;
+
 
 	// Use this for initialization
 	void Start () {
@@ -26,21 +27,23 @@ public class ButtonBehaviorLv01 : MonoBehaviour {
 		DisplayWhenResumed = GameObject.FindGameObjectsWithTag("Unpaused");
 		foreach (GameObject dp in DisplayWhenResumed)
 			dp.SetActive (true);
-		time = Time.time;
-		jit2.enabled = false;
-		Destroy (jit1, 3);
-
+		JIT1 = GameObject.Find("JIT1").GetComponent<Text> ();
+		JIT2 = GameObject.Find("JIT2").GetComponent<Text> ();
+		if (GameController.instance.JIT) {
+			JIT1.enabled = true;
+			JIT2.enabled = true;
+			GameController.instance.setJIT ();
+		}
+		Destroy (JIT1, 3);
+		Destroy (JIT2, 3);
 
 		//pauseText.SetActive(false);
 		paused = false;
 	}
 
 	// Update is called once per frame
-	void Update () {
-		if (Time.time - time >= 3 && Time.time - time <= 4){
-			jit2.enabled = true;
-			Destroy(jit2,3);
-		}
+	void Update () {	
+
 		if (Input.GetButtonDown ("Jump") && !paused) 
 			PauseGame ();
 		else if (Input.GetButtonDown ("Jump") && paused) 
@@ -119,11 +122,13 @@ public class ButtonBehaviorLv01 : MonoBehaviour {
 		{
 			print (PlayerPrefs.GetString ("HighScoreName"+i) + " " + PlayerPrefs.GetInt ("HighScore" + i));
 		}
+		GameControl.Instance.setToZero ();
+		GameController.instance.setToZero ();
 		SceneManager.LoadScene ("startMenu");
 	}
 
 	public void QuitGame() {
 		Application.Quit ();
 	}
-		
+
 }

@@ -1,11 +1,12 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/MenuScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/Health.cs">
     <Files>
-      <File FileName="Assets/scripts/GameControl.cs" Line="17" Column="20" />
-      <File FileName="Assets/scripts/volume.cs" Line="15" Column="57" />
-      <File FileName="Assets/volumeSetting.cs" Line="10" Column="46" />
-      <File FileName="Assets/scripts/MenuScript.cs" Line="68" Column="39" />
+      <File FileName="Assets/scripts/Health.cs" Line="41" Column="19" />
+      <File FileName="Assets/scripts/QuestionTrigger.cs" Line="1" Column="1" />
+      <File FileName="Assets/scripts/GameController.cs" Line="1" Column="1" />
+      <File FileName="Assets/scripts/ButtonBehaviorLv01.cs" Line="1" Column="1" />
+      <File FileName="Assets/scripts/EnemyController.cs" Line="27" Column="46" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
