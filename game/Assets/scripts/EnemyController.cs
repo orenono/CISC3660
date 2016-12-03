@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour {
 	private Rigidbody2D rb2d;
 	public Transform target;
 	public float speed;
+	private float moveH, moveV;
 	private float minDistance = .5f; // default value is 1f
 	private float range;
 	private AudioSource caughtThePlayer;
@@ -21,23 +22,29 @@ public class EnemyController : MonoBehaviour {
 		rb2d = GetComponent<Rigidbody2D> ();
 		animator = GetComponent<Animator> ();
 		isFacingRight = false;
-			
-		GameController.instance.LoadData ("Enemy");
+		speed = 0f;
+		moveH = moveV = 0f;
+
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+		moveH = Input.GetAxis ("Horizontal");
+		moveV = Input.GetAxis ("Vertical");
+
+		if (speed == 0)
+			if (moveH != 0 || moveV != 0)
+				speed = 2.5f;
 		if ((target.position.x - transform.position.x < 0 && isFacingRight) || (target.position.x - transform.position.x > 0 && !isFacingRight))
 			Flip ();
 
 		// Chase the player algorithm
 		range = Vector2.Distance(transform.position, target.position);
-		speed = target.GetComponent<PlayerController> ().speed;
 
 		if (range > minDistance)
 		{
-			transform.position = Vector2.MoveTowards(transform.position, target.position, speed * 2 * Time.deltaTime);
+			transform.position = Vector2.MoveTowards(transform.position, target.position, speed * 1.7f * Time.deltaTime);
 		}			
 	
 	}
@@ -57,6 +64,7 @@ public class EnemyController : MonoBehaviour {
 	void OnTriggerExit2D (Collider2D other) {
 		if (other.gameObject.CompareTag ("Player")) {
 			damageIndicator.SetActive (false);
+			animator.SetBool ("attack", false);
 		}
 	}
 		
@@ -65,5 +73,13 @@ public class EnemyController : MonoBehaviour {
 		playerScale.x = playerScale.x * -1;
 		transform.localScale = playerScale;
 		isFacingRight = !isFacingRight;
+	}
+
+	public void muteAudio() {
+		caughtThePlayer.mute = true;
+	}
+
+	public void unmuteAudio() {
+		caughtThePlayer.mute = false;
 	}
 }

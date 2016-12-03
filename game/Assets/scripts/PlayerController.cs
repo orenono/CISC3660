@@ -6,17 +6,19 @@ public class PlayerController : MonoBehaviour {
 	
 	private Rigidbody2D rb2d;
 	public float speed;
+	public float speedAdjust;
+	public float speedUp;
 	public Health playerHealth;
 	private AudioSource audio;
 	private bool isFacingRight;
 	private Animator animator;
 	private float moveHorizontal;
 	private float moveVertical;
-	private float speedBoost;
+	private bool onTriggered;
 
+	private Collider2D enemy;
 	public GameObject startStreet, spawnStreet, policyStation;
 	public Vector2 spawnLocation;
-	public int spawnLimit;
 	public Text winTxt;
 
 	void Awake() {
@@ -24,7 +26,6 @@ public class PlayerController : MonoBehaviour {
 		if (audio == null) {
 			audio = GetComponent<AudioSource> ();
 		}
-			
 	}
 
     // Use this for initialization
@@ -32,35 +33,38 @@ public class PlayerController : MonoBehaviour {
 		rb2d = GetComponent<Rigidbody2D> ();
 		animator = GetComponent<Animator> ();
 		isFacingRight = true;
-		speed = 3.0f;
-		speedBoost = 1.0f;
-
-		spawnLimit = 5;
+		speed = 2.5f;
+		speedAdjust = 1f;
+		speedUp = Time.time - 2;
+		//LoadPlayerPos (0, 2, 0);
+		onTriggered = false;
 		spawnLocation = new Vector2 (startStreet.transform.position.x, startStreet.transform.position.y);
 		winTxt.enabled = false;
-
-		GameController.instance.LoadData ("Player"); 
-	
+		//GameController.instance.LoadPlayerPosition (); // this does not work as of right now
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		moveHorizontal = Input.GetAxis ("Horizontal");
 		moveVertical = Input.GetAxis ("Vertical");
+		if (Time.time - speedUp < 1.5f)
+			speed = 3f;
+		else
+			speed = 2f;
 
-		if (GameController.instance.IsDebugging()) {
-			if (Input.GetKeyDown (KeyCode.LeftShift))
-				speedBoost = 8.0f;
-			if (Input.GetKeyUp (KeyCode.LeftShift))
-				speedBoost = 1.0f;
-		}
-
-		Vector2 movement = new Vector2 (moveHorizontal * speed, moveVertical * speed * speedBoost);
+		if (moveHorizontal != 0 && moveVertical != 0)
+			speedAdjust = .77f;
+		else
+			speedAdjust = 1f;
+		Vector2 movement = new Vector2 (moveHorizontal * speed * speedAdjust, moveVertical * speed * speedAdjust);
 		MovePlayer (movement);
 
 		if ((moveHorizontal < 0 && isFacingRight) || (moveHorizontal > 0 && !isFacingRight))
 			Flip ();
 
+		if (onTriggered && Time.time - speedUp > 1.5f)
+			OnTriggerEnter2D (enemy);
+			
 		//make footsteps sound when player moves
 		if (IsMoving () && audio.isPlaying == false) {
 			audio.Play ();
@@ -70,17 +74,10 @@ public class PlayerController : MonoBehaviour {
 			audio.Stop ();
 		}
 
-		if (this.transform.position.y >= spawnLocation.y && spawnLimit > 0) {
-			spawnLimit--;
+		if (this.transform.position.y >= spawnLocation.y ) {
 			spawnLocation = new Vector2 (spawnLocation.x, spawnLocation.y + 63);
 			Instantiate (spawnStreet, spawnLocation, Quaternion.identity);
 		} 
-		else if (spawnLimit == 0) {
-			spawnLocation = new Vector2 (spawnLocation.x, spawnLocation.y + 38);
-			Instantiate (policyStation, spawnLocation, Quaternion.identity);    
-		}
-
-		playerHealth.ShowHealth ();
 	}
 
 
@@ -107,38 +104,21 @@ public class PlayerController : MonoBehaviour {
 	// Decrease player's health if the enemy collides with it
 	void OnTriggerEnter2D (Collider2D other) {
 		if (other.gameObject.CompareTag ("Enemy")) {
+			enemy = other;
 			animator.SetBool("hit", true);
 			playerHealth.DecreaseHealth ();
-
+			speedUp = Time.time;
+			onTriggered = true;
 			//other.gameObject.SetActive (false);
-
 		}
-		if (other.gameObject.CompareTag ("PoliceStation")) {
-			if (GameController.instance.GetCorrectAnswerCount () >= 22) {
-				Time.timeScale = 0.0f;
-				winTxt.fontSize = 70;
-				winTxt.text = "You Win!";
-				winTxt.enabled = true;
-			}
-			else {
-
-				winTxt.fontSize = 30;
-				winTxt.text = "You need at least 22 correct answers to enter!";
-				winTxt.enabled = true;
-			}
-		}
-
 	}
 
 	void OnTriggerExit2D (Collider2D other) {
-
-		if (other.gameObject.CompareTag ("PoliceStation")) {
-
-			winTxt.enabled = false;
+		if (other.gameObject.CompareTag ("Enemy")) {
+			animator.SetBool("hit", false);
+			onTriggered = false;
 		}
 	}
-
-
 
 	// killing the player code
 	public bool IsPlayerDead () {
@@ -162,6 +142,27 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	void OnDestroy() {
+		//SavePlayerPos ();
+	}
+
+
+	public void SavePlayerPos() {
+		PlayerPrefs.SetFloat ("X", transform.position.x);
+		PlayerPrefs.SetFloat ("Y", transform.position.y);
+		PlayerPrefs.SetFloat ("Z", transform.position.z);
+	}
+
+	public void LoadPlayerPos(float xOffset, float yOffset, float zOffset) {
+		//transform.position.x = PlayerPrefs.GetFloat ("X");
+		//transform.position.y = PlayerPrefs.GetFloat ("Y");
+		//transform.position.z = PlayerPrefs.GetFloat ("Z");
+
+		Vector3 playerPos = new Vector3 (PlayerPrefs.GetFloat ("X") + xOffset, PlayerPrefs.GetFloat ("Y") 
+										+ yOffset, PlayerPrefs.GetFloat ("Z") + zOffset);
+		transform.position = playerPos;
+	}
+
 	public void Flip() {
 		Vector3 playerScale = transform.localScale;
 		playerScale.x = playerScale.x * -1;
@@ -169,6 +170,11 @@ public class PlayerController : MonoBehaviour {
 		isFacingRight = !isFacingRight;
 	}
 
+	public void muteAudio() {
+		audio.mute = true;
+	}
 
-
+	public void unmuteAudio() {
+		audio.mute = false;
+	}
 }
