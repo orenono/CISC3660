@@ -21,7 +21,7 @@ public class TextMovingScript : MonoBehaviour {
 
 		textPosition.Translate (0, 1 * speed, 0);
 
-		if ((textPosition.position.y >= 1040) || Input.GetKeyDown ("space"))
+		if ((textPosition.position.y >= 1240) || Input.GetKeyDown ("space"))
 			LoadGame ();
 		else if (Input.GetKeyDown (KeyCode.Escape))  
 		{

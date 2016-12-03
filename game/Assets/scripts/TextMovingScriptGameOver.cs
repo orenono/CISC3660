@@ -25,6 +25,7 @@ public class TextMovingScriptGameOver : MonoBehaviour {
 		else if ((textPosition.position.y >= 110) || Input.GetKeyDown ("space")){
 			textPosition.Translate (0, -1 * speed, 0);
 		}
+
 		else if (Input.GetKeyDown (KeyCode.Escape))  
 		{
 			SceneManager.LoadScene ("startMenu");
