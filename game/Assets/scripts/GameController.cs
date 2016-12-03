@@ -85,7 +85,10 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void IncrementQuestionCounter() {
-		questionCounter++;
+		if (questionCounter >= 33)
+			questionCounter = 1;
+		else
+			questionCounter++;
 	}
 
 	/////////////////////////////////////////////
