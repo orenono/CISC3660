@@ -6,6 +6,8 @@ public class GameControl : MonoBehaviour {
 	public string playerName;
 	public int score;
 	public float musicVolume;
+	public bool JIT;
+
 
 
 	public static GameControl Instance;
@@ -15,6 +17,7 @@ public class GameControl : MonoBehaviour {
 		playerName = "";
 		score = 0;
 		musicVolume = 1f;
+		JIT = true;
 	}
 
 	void Awake()
@@ -30,6 +33,7 @@ public class GameControl : MonoBehaviour {
 	public void setToZero() {
 		playerName = "";
 		score = 0;
+		JIT = true;
 	}
 
 	public void setScore(int s)
@@ -57,9 +61,13 @@ public class GameControl : MonoBehaviour {
 		return playerName;
 	}
 
-	public float getmusicVolume ()
+	public void getmusicVolume (AudioSource audio)
 	{
-		return musicVolume;
+		audio.volume = musicVolume;
+	}
+
+	public void setJIT() {
+		JIT = false;
 	}
 }
 

@@ -23,9 +23,12 @@ public class GameController : MonoBehaviour {
 	Vector2 playerPos;
 	GameObject enemy;
 	Vector2 enemyPos;
+	public Vector2 playerStartPos;
+	public Vector2 enemyStartPos;
 	public float playerHealth = 100;
 	bool debuggingGame = false; // Set this to false on final build
-	public bool JIT = true;
+	public bool JIT;
+	public int tempCorrectAns;
 
 	void Awake() {
 
@@ -43,6 +46,9 @@ public class GameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		JIT = true;
+		playerStartPos = playerPos;
+		enemyStartPos = enemyPos;
 
 
 
@@ -79,7 +85,10 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void IncrementQuestionCounter() {
-		questionCounter++;
+		if (questionCounter >= 33)
+			questionCounter = 1;
+		else
+			questionCounter++;
 	}
 
 	/////////////////////////////////////////////
@@ -123,7 +132,8 @@ public class GameController : MonoBehaviour {
 		case "Player":
 			if (player == null)
 				player = GameObject.Find (str);
-
+			
+			tempCorrectAns = correctAns;
 			playerPos = player.transform.position;
 			break;
 
@@ -151,8 +161,9 @@ public class GameController : MonoBehaviour {
 		case "Enemy":
 			if (enemy == null)
 				enemy = GameObject.Find (str);
-				
-			enemyPos = enemyPos + new Vector2 (0, 3f);
+
+			int temp = correctAns - tempCorrectAns;
+			enemyPos = enemyPos - new Vector2 (0, -1f * temp);
 			enemy.transform.position = enemyPos;
 			break;
 
@@ -172,5 +183,13 @@ public class GameController : MonoBehaviour {
 		countdown = false;
 		playerHealth = 100;
 		JIT = true;
+		enemyPos = enemyStartPos;
+		playerPos = playerStartPos;
+	}
+
+	public void lv1to2() {
+		playerHealth = 100;
+		enemyPos = enemyStartPos;
+		playerPos = playerStartPos;
 	}
 }

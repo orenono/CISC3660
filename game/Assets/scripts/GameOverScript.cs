@@ -7,7 +7,6 @@ public class GameOverScript : MonoBehaviour {
 
 
 
-
 	// Use this for initialization
 	void Start () {
 

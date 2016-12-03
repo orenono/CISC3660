@@ -1,12 +1,20 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/Health.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/ButtonBehaviorLv01.cs">
     <Files>
-      <File FileName="Assets/scripts/Health.cs" Line="41" Column="19" />
-      <File FileName="Assets/scripts/QuestionTrigger.cs" Line="1" Column="1" />
-      <File FileName="Assets/scripts/GameController.cs" Line="1" Column="1" />
-      <File FileName="Assets/scripts/ButtonBehaviorLv01.cs" Line="1" Column="1" />
-      <File FileName="Assets/scripts/EnemyController.cs" Line="27" Column="46" />
+      <File FileName="Assets/scripts/MenuScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/scripts/Health.cs" Line="40" Column="1" />
+      <File FileName="Assets/scripts/GameOverAndWinScript.cs" Line="36" Column="1" />
+      <File FileName="Assets/scripts/ButtonBehaviorLv01.cs" Line="147" Column="1" />
+      <File FileName="Assets/scripts/PlayerController.cs" Line="1" Column="1" />
+      <File FileName="Assets/scripts/EnemyController.cs" Line="1" Column="1" />
+      <File FileName="Assets/scripts/GameController.cs" Line="186" Column="24" />
+      <File FileName="Assets/scripts/QuestionController.cs" Line="1" Column="1" />
+      <File FileName="Assets/scripts/winCheck.cs" Line="8" Column="17" />
+      <File FileName="Assets/scripts/winCheckLV2.cs" Line="22" Column="1" />
+      <File FileName="Assets/scripts/AnswerWithMouse.cs" Line="31" Column="7" />
+      <File FileName="Assets/scripts/backgroundMusic.cs" Line="1" Column="1" />
+      <File FileName="Assets/scripts/ButtonBehavior.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
