@@ -17,6 +17,9 @@ Feel free to suggest/change/edit whatever you like
 *Store how many houses the player has entered // not sure if we need this one anymore
 *Level 2.                                                         JW
 
+****Still needs to be done:
+There are now 4 new cutscenes called :"knockSceneSerious"(comes after the player goes to a door trigger), "walkingThroughHouse"(comes after the player answered the minimum correct answers), "WinScene0"(comes when the player finishes the game), "gameOverFinal0"(comes when the player is dead). Please implement these levels to your code!!
+
 ***Elements needed for Complete Game***
 *Spawn player and enemy to the right location and health                 
 *Implement questions and answers                                   SR      Done!
@@ -33,6 +36,5 @@ Feel free to suggest/change/edit whatever you like
 *Add lights to street                                              O.L.   Done!
 
 
-****Still needs to be done:
-There are now 4 new cutscenes called :"knockSceneSerious"(comes after the player goes to a door trigger), "walkingThroughHouse"(comes after the player answered the minimum correct answers), "WinScene0"(comes when the player finishes the game), "gameOverFinal0"(comes when the player is dead). Please implement these levels to your code!!
+
 
