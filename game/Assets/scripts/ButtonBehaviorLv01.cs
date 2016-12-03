@@ -14,8 +14,9 @@ public class ButtonBehaviorLv01 : MonoBehaviour {
 	public float time;
 	public Text JIT1;
 	public Text JIT2;
+	public Text lv2;
+
 	public saveAndReturn save;
-	const int NUM_SCORES = 5;
 
 
 	// Use this for initialization
@@ -29,6 +30,10 @@ public class ButtonBehaviorLv01 : MonoBehaviour {
 			dp.SetActive (true);*/
 		JIT1 = GameObject.Find("JIT1").GetComponent<Text> ();
 		JIT2 = GameObject.Find("JIT2").GetComponent<Text> ();
+		lv2 = GameObject.Find("level02").GetComponent<Text> ();
+
+		lv2.enabled = true;
+
 		if (GameController.instance.JIT) {
 			JIT1.enabled = true;
 			JIT2.enabled = true;
@@ -36,6 +41,7 @@ public class ButtonBehaviorLv01 : MonoBehaviour {
 		}
 		Destroy (JIT1, 3);
 		Destroy (JIT2, 3);
+		Destroy (lv2, 3);
 
 		//pauseText.SetActive(false);
 		paused = false;
@@ -49,6 +55,7 @@ public class ButtonBehaviorLv01 : MonoBehaviour {
 		else if (Input.GetButtonDown ("Jump") && paused) 
 			ResumeGame ();
 		else if (Input.GetKeyDown (KeyCode.Escape)) {
+			Menu2 ();
 			SceneManager.LoadScene("startMenu");
 		}
 	}
@@ -85,6 +92,8 @@ public class ButtonBehaviorLv01 : MonoBehaviour {
 
 	public void Menu()
 	{
+		const int NUM_SCORES = 5;
+
 		int pScore = GameControl.Instance.getScore ();
 		string pName = GameControl.Instance.getName ();
 
@@ -131,4 +140,48 @@ public class ButtonBehaviorLv01 : MonoBehaviour {
 		Application.Quit ();
 	}
 
+	public void Menu2()
+	{
+		const int NUM_SCORES = 5;
+
+		int pScore = GameControl.Instance.getScore ();
+		string pName = GameControl.Instance.getName ();
+
+		string scoreKey = "HighScore";
+		string nameKey = "HighScoreName";
+
+		for (int i = 0; i < NUM_SCORES; i++) {
+			string curNameKey = (nameKey + i).ToString();
+			string curScoreKey = (scoreKey + i).ToString();
+
+			if (!(PlayerPrefs.HasKey (curScoreKey))) {
+				print ("no such score");
+				PlayerPrefs.SetInt (curScoreKey, pScore);
+				PlayerPrefs.SetString (curNameKey, pName);
+			} 
+
+			else {
+				int score = PlayerPrefs.GetInt (curScoreKey);
+
+
+				if (pScore > score) {
+					int tempScore = score;
+					string tempName = PlayerPrefs.GetString (curNameKey);
+
+					PlayerPrefs.SetInt (curScoreKey, pScore);
+					PlayerPrefs.SetString (curNameKey, pName);
+
+					pName = tempName;
+					pScore = tempScore;
+				}
+			}
+		}		
+
+		for (int i = 0; i < NUM_SCORES; i++)
+		{
+			print (PlayerPrefs.GetString ("HighScoreName"+i) + " " + PlayerPrefs.GetInt ("HighScore" + i));
+		}
+		GameControl.Instance.setToZero ();
+		GameController.instance.setToZero ();
+	}
 }

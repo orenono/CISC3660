@@ -23,6 +23,8 @@ public class GameController : MonoBehaviour {
 	Vector2 playerPos;
 	GameObject enemy;
 	Vector2 enemyPos;
+	public Vector2 playerStartPos;
+	public Vector2 enemyStartPos;
 	public float playerHealth = 100;
 	bool debuggingGame = false; // Set this to false on final build
 	public bool JIT = true;
@@ -44,6 +46,8 @@ public class GameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		playerStartPos = playerPos;
+		enemyStartPos = enemyPos;
 
 
 
@@ -175,5 +179,13 @@ public class GameController : MonoBehaviour {
 		countdown = false;
 		playerHealth = 100;
 		JIT = true;
+		enemyPos = enemyStartPos;
+		playerPos = playerStartPos;
+	}
+
+	public void lv1to2() {
+		playerHealth = 100;
+		enemyPos = enemyStartPos;
+		playerPos = playerStartPos;
 	}
 }
