@@ -11,8 +11,7 @@ public class QuestionController : MonoBehaviour {
 	public Transform resultObj;
 	public GameObject qTrigger;
 	public GameObject score;
-	private AudioSource correctAnswerAudio;
-	public AudioSource wrongAnswerAudio;
+
 
 	public static string selectedAnswer;
 	public static string choiceSelected = "n";
@@ -20,11 +19,7 @@ public class QuestionController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if (correctAnswerAudio == null)
-			correctAnswerAudio = GetComponent <AudioSource> ();
-
-		if (wrongAnswerAudio == null)
-			wrongAnswerAudio = GetComponent <AudioSource> ();
+	
 	}
 
 	// Update is called once per frame
@@ -40,30 +35,12 @@ public class QuestionController : MonoBehaviour {
 			// Check the player's choice with the correct answer from the array
 			if (GetCorrectAnswer (qCounter) == selectedAnswer) {
 				resultObj.GetComponent<TextMesh> ().text = "Correct!   Click next to continue";
-				correctAnswerAudio.Play ();
+
 				GameController.instance.IncreaseScore ();
-				Color newColor = Color.green;
-				switch (int.Parse(GetCorrectAnswer (qCounter))) {
-				case 1:
-					StartCoroutine(HighlightCorrectAnswer (ans1, newColor, 30));
-					break;
-
-				case 2:
-					StartCoroutine(HighlightCorrectAnswer (ans2, newColor, 30));
-					break;
-
-				case 3:
-					StartCoroutine(HighlightCorrectAnswer (ans3, newColor, 30));
-					break;
-
-				case 4:
-					StartCoroutine(HighlightCorrectAnswer (ans4, newColor, 30));
-					break;
-				}
+				GameControl.Instance.increaseScore (1);
 			} 
 
 			if (GetCorrectAnswer (qCounter) != selectedAnswer) {
-				wrongAnswerAudio.Play ();
 
 				switch (int.Parse(GetCorrectAnswer (qCounter))) {
 				case 1:
@@ -96,13 +73,11 @@ public class QuestionController : MonoBehaviour {
 	}
 
 	public void populateQuestion(int counter) {
-		if (counter <= Questions.qa.GetLength (0)) {
-			questionText.GetComponent<TextMesh> ().text = Questions.qa [counter, 0];
-			ans1.GetComponent<TextMesh> ().text = Questions.qa [counter, 1];
-			ans2.GetComponent<TextMesh> ().text = Questions.qa [counter, 2];
-			ans3.GetComponent<TextMesh> ().text = Questions.qa [counter, 3];
-			ans4.GetComponent<TextMesh> ().text = Questions.qa [counter, 4]; 
-		}
+		questionText.GetComponent<TextMesh> ().text = Questions.qa [counter, 0];
+		ans1.GetComponent<TextMesh> ().text = Questions.qa [counter, 1];
+		ans2.GetComponent<TextMesh> ().text = Questions.qa [counter, 2];
+		ans3.GetComponent<TextMesh> ().text = Questions.qa [counter, 3];
+		ans4.GetComponent<TextMesh> ().text = Questions.qa [counter, 4]; 
 	}	
 
 	public string GetCorrectAnswer(int questionIndex) {
@@ -132,19 +107,6 @@ public class QuestionController : MonoBehaviour {
 			yield return new WaitForSeconds (.1f);
 			tm.GetComponent<TextMesh> ().color = c;
 			tm.GetComponent<TextMesh> ().fontSize = fontSize - 2;
-		}
-	}
-
-	public IEnumerator HighlightCorrectAnswer(TextMesh tm, Color c, int fontSize) { 
-		tm.GetComponent<TextMesh> ().color = c;
-		tm.GetComponent<TextMesh> ().fontSize = fontSize;
-		for (int i = 0; i < 2; i++) {	
-			yield return new WaitForSeconds (.1f);
-			tm.GetComponent<TextMesh> ().color = Color.white;
-			tm.GetComponent<TextMesh> ().fontSize = fontSize + 1;
-			yield return new WaitForSeconds (.1f);
-			tm.GetComponent<TextMesh> ().color = c;
-			tm.GetComponent<TextMesh> ().fontSize = fontSize - 1;
 		}
 	}
 

@@ -8,6 +8,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
@@ -24,6 +25,7 @@ public class GameController : MonoBehaviour {
 	Vector2 enemyPos;
 	public float playerHealth = 100;
 	bool debuggingGame = false; // Set this to false on final build
+	public bool JIT = true;
 
 	void Awake() {
 
@@ -41,7 +43,8 @@ public class GameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+
+
 
 	}
 
@@ -85,7 +88,6 @@ public class GameController : MonoBehaviour {
 
 	public void IncreaseScore() {
 		correctAns++;
-		GameControl.Instance.increaseScore (1);
 	}
 
 	public int GetNumberOfQuestions () {
@@ -111,7 +113,7 @@ public class GameController : MonoBehaviour {
 	public void SetCountdownActive(bool toggle) {
 		countdown = toggle;
 	}
-		
+
 	/////////////////////////////////////////////
 	//		Data Persistent Methods
 	/////////////////////////////////////////////
@@ -142,20 +144,33 @@ public class GameController : MonoBehaviour {
 			if (player == null)
 				player = GameObject.Find (str);
 
+			playerPos = playerPos + new Vector2 (0, 10f);
 			player.transform.position = playerPos;
 			break;
 
 		case "Enemy":
 			if (enemy == null)
 				enemy = GameObject.Find (str);
-
-			enemyPos = enemyPos - new Vector2 (0, 5f);
+				
+			enemyPos = enemyPos + new Vector2 (0, 3f);
 			enemy.transform.position = enemyPos;
 			break;
 
 		}
 
 	}
-		
 
+	public void setJIT() {
+		JIT = false;
+	}
+
+	public void setToZero() {
+		correctAns = 0;
+		isTriggerUsed = new bool[11];
+		questionCounter = 1;
+		questionsPerHouse = 3; 
+		countdown = false;
+		playerHealth = 100;
+		JIT = true;
+	}
 }

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerController : MonoBehaviour {
 	
@@ -15,7 +17,6 @@ public class PlayerController : MonoBehaviour {
 	private float moveHorizontal;
 	private float moveVertical;
 	private bool onTriggered;
-
 	private Collider2D enemy;
 	public GameObject startStreet, spawnStreet, policyStation;
 	public Vector2 spawnLocation;
@@ -39,8 +40,10 @@ public class PlayerController : MonoBehaviour {
 		//LoadPlayerPos (0, 2, 0);
 		onTriggered = false;
 		spawnLocation = new Vector2 (startStreet.transform.position.x, startStreet.transform.position.y);
-		winTxt.enabled = false;
 		//GameController.instance.LoadPlayerPosition (); // this does not work as of right now
+
+		GameController.instance.LoadData ("Player"); 
+
 	}
 	
 	// Update is called once per frame
@@ -78,6 +81,8 @@ public class PlayerController : MonoBehaviour {
 			spawnLocation = new Vector2 (spawnLocation.x, spawnLocation.y + 63);
 			Instantiate (spawnStreet, spawnLocation, Quaternion.identity);
 		} 
+
+		playerHealth.ShowHealth ();
 	}
 
 

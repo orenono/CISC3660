@@ -43,5 +43,4 @@ public class Score : MonoBehaviour {
 		IncreaseScore (1);
 	}
 
-
 }
