@@ -6,8 +6,8 @@ public class Questions : MonoBehaviour {
 	// Create a 2D string array for questions and answers
 	public static string[,] qa = new string[,] {
 		{
-			"",
-			"",
+			"", // leaving first one empty so the counter starts at 1
+			"",	// instead of zero
 			"",
 			"",
 			"",
@@ -126,7 +126,7 @@ public class Questions : MonoBehaviour {
 		},
 
 		{
-			"Which of the following cancers is NOT a common cancer in Men:",
+			"Which of the following cancers is \nNOT a common cancer in Men:",
 			"Thyroid gland",
 			"Bladder",
 			"Prostate",
@@ -136,7 +136,7 @@ public class Questions : MonoBehaviour {
 		},
 
 		{
-			"Which of the following is the first step in cancer development:",
+			"Which of the following is the first \nstep in cancer development:",
 			"Promotion",
 			"Spread",
 			"Initiation",
@@ -146,7 +146,7 @@ public class Questions : MonoBehaviour {
 		},
 
 		{
-			"Factors that promotes the development of cancer are \ncalled Carcinogens",
+			"Factors that promotes the development \nof cancer are called Carcinogens",
 			"True",
 			"False",
 			"",
@@ -156,18 +156,18 @@ public class Questions : MonoBehaviour {
 		},
 
 		{
-			"Stage 4 cancer refers to a cancer that hasn’t spread that much",
+			"Stage 4 cancer refers to a cancer that hasn’t \nspread that much",
 			"True",
 			"False",
 			"",
 			"",
 			"2",
-			"stage 4 cancer is considered the highest stage in \nwhich the cancer has spread into many areas",
+			"stage 4 cancer is considered the highest \nstage in which the cancer has spread into \nmany areas",
 
 		},
 
 		{
-			"Which of the following are possible treatments for cancer:",
+			"Which of the following are possible treatments \nfor cancer:",
 			"Surgery",
 			"Chemotherapy",
 			"Radiation",
@@ -177,7 +177,7 @@ public class Questions : MonoBehaviour {
 		},
 
 		{
-			"How many cases of new cancers are diagnosed each year",
+			"How many cases of new cancers are diagnosed \neach year",
 			"Million",
 			"2 million",
 			"100,000",
@@ -227,7 +227,7 @@ public class Questions : MonoBehaviour {
 		},
 
 		{
-			"Sarcoma is a type of cancer that arises from connective tissue",
+			"Sarcoma is a type of cancer that arises from \nconnective tissue",
 			"True",
 			"False",
 			"",
@@ -257,7 +257,7 @@ public class Questions : MonoBehaviour {
 		},
 
 		{
-			"Oncogenes are genes that inhibit cell growth and survival",
+			"Oncogenes are genes that inhibit cell growth and \nsurvival",
 			"True",
 			"False",
 			"",
@@ -287,7 +287,7 @@ public class Questions : MonoBehaviour {
 		},
 
 		{
-			"Which of the following is NOT a genetic influence associated \nwith cancer?",
+			"Which of the following is NOT a genetic influence \nassociated with cancer?",
 			"Mutations",
 			"Oncogenes",
 			"Tumor-Suppressor genes",
@@ -317,7 +317,7 @@ public class Questions : MonoBehaviour {
 		},
 
 		{
-			"Aside from not smoking which of the following can be a \nmajor cause of cancer?",
+			"Aside from not smoking which of the following can \nbe a major cause of cancer?",
 			"Artificial sweeteners",
 			"Cell phones",
 			"Obesity",
@@ -337,7 +337,7 @@ public class Questions : MonoBehaviour {
 		},
 
 		{
-			"Surgery, Chemotherapy and radiotherapy are all ways of?",
+			"Surgery, Chemotherapy and radiotherapy are all \nways of?",
 			"Treating cancer",
 			"Finding cancer",
 			"Causing cancer",
@@ -345,8 +345,7 @@ public class Questions : MonoBehaviour {
 			"1",
 			"",
 		}
-
-			
+						
 	};
 
 	// Use this for initialization

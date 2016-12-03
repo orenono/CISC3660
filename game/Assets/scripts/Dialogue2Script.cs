@@ -13,6 +13,7 @@ public class Dialogue2Script : MonoBehaviour {
 	private int textManNumber = 0;
 	public Camera camera;
 	public AudioSource babyCry;
+	public Button skipScene;
 
 
 	// Use this for initialization
@@ -103,5 +104,10 @@ public class Dialogue2Script : MonoBehaviour {
 		textsMan [textManNumber].enabled = false;
 		textWomanNumber++;
 
+	}
+
+	public void SkipScene() {
+		
+		SceneManager.LoadScene ("QA_scene");
 	}
 }

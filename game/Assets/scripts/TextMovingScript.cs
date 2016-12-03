@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class TextMovingScript : MonoBehaviour {
 
 	private RectTransform textPosition;
-	public float speed = 7.0f;
+	public float speed;
 
 	// Use this for initialization
 	void Start () {
@@ -21,7 +21,7 @@ public class TextMovingScript : MonoBehaviour {
 
 		textPosition.Translate (0, 1 * speed, 0);
 
-		if ((textPosition.position.y >= 1800) || Input.GetKeyDown ("space"))
+		if ((textPosition.position.y >= 1240) || Input.GetKeyDown ("space"))
 			LoadGame ();
 		else if (Input.GetKeyDown (KeyCode.Escape))  
 		{

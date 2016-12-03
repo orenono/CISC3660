@@ -14,19 +14,19 @@ public class ButtonBehaviorLv01 : MonoBehaviour {
 	public float time;
 	public Text JIT1;
 	public Text JIT2;
-
+	public saveAndReturn save;
 	const int NUM_SCORES = 5;
 
 
 	// Use this for initialization
 	void Start () {
-		DisplayWhenPaused = GameObject.FindGameObjectsWithTag("Paused");
+		/*DisplayWhenPaused = GameObject.FindGameObjectsWithTag("Paused");
 		foreach (GameObject dp in DisplayWhenPaused)
 			dp.SetActive (false);
 		//if (pauseText == null) {
 		DisplayWhenResumed = GameObject.FindGameObjectsWithTag("Unpaused");
 		foreach (GameObject dp in DisplayWhenResumed)
-			dp.SetActive (true);
+			dp.SetActive (true);*/
 		JIT1 = GameObject.Find("JIT1").GetComponent<Text> ();
 		JIT2 = GameObject.Find("JIT2").GetComponent<Text> ();
 		if (GameController.instance.JIT) {

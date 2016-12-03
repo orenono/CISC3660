@@ -57,9 +57,9 @@ public class GameControl : MonoBehaviour {
 		return playerName;
 	}
 
-	public float getmusicVolume ()
+	public void getmusicVolume (AudioSource audio)
 	{
-		return musicVolume;
+		audio.volume = musicVolume;
 	}
 }
 

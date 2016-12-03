@@ -26,6 +26,7 @@ public class GameController : MonoBehaviour {
 	public float playerHealth = 100;
 	bool debuggingGame = false; // Set this to false on final build
 	public bool JIT = true;
+	public int tempCorrectAns;
 
 	void Awake() {
 
@@ -123,7 +124,8 @@ public class GameController : MonoBehaviour {
 		case "Player":
 			if (player == null)
 				player = GameObject.Find (str);
-
+			
+			tempCorrectAns = correctAns;
 			playerPos = player.transform.position;
 			break;
 
@@ -151,8 +153,9 @@ public class GameController : MonoBehaviour {
 		case "Enemy":
 			if (enemy == null)
 				enemy = GameObject.Find (str);
-				
-			enemyPos = enemyPos + new Vector2 (0, 3f);
+
+			int temp = correctAns - tempCorrectAns;
+			enemyPos = enemyPos - new Vector2 (0, -1f * temp);
 			enemy.transform.position = enemyPos;
 			break;
 

@@ -30,7 +30,7 @@ public class QuestionTrigger : MonoBehaviour {
 			GameController.instance.SaveData ("Enemy");
 			GameController.instance.SaveData ("Healthbar");
 
-			SceneManager.LoadScene ("doorCutscene");
+			SceneManager.LoadScene ("knockSceneSerious");
 			//SceneManager.LoadScene ("QA_scene");
 		}
 	}

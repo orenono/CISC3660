@@ -7,7 +7,7 @@ public class Health : MonoBehaviour {
 	public GameObject player;
 	public GameObject healthbar;
 	public Image healthbarColor;
-
+	public saveAndReturn save;
 	private int maxHealth = 100;
 	private float currHealth;
 
@@ -15,6 +15,7 @@ public class Health : MonoBehaviour {
 	void Start () {
 		healthbarColor = healthbarColor.GetComponent<Image>();
 		currHealth = GameController.instance.playerHealth;
+		save = GetComponent<saveAndReturn> ();
 	}
 
 	// Update is called once per frame
@@ -35,8 +36,9 @@ public class Health : MonoBehaviour {
 			currHealth = GameController.instance.playerHealth;
 			currHealth -= 25;
 			SetCurrentHealth (currHealth);
-			if (currHealth <= 0)
-				SceneManager.LoadScene ("gameover");	
+			if (currHealth <= 0) {
+				SceneManager.LoadScene ("gameOverFinal0");	
+			}
 		}
 	}
 

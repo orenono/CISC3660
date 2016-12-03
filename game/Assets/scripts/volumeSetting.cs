@@ -12,7 +12,7 @@ public class volumeSetting : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-			musicSource.volume = GameControl.Instance.musicVolume;
+		GameControl.Instance.getmusicVolume(musicSource);
 
 	}
 }

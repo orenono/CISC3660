@@ -7,7 +7,7 @@ public class volume : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		musicSource = GetComponent<AudioSource> ();
-		//musicSource.volume = GameControl.Instance.getmusicVolume();
+		GameControl.Instance.getmusicVolume(musicSource);
 
 
 	}
