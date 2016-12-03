@@ -34,10 +34,10 @@ public class ButtonBehaviorLv01 : MonoBehaviour {
 
 		lv2.enabled = true;
 
-		if (GameController.instance.JIT) {
+		if (GameControl.Instance.JIT) {
 			JIT1.enabled = true;
 			JIT2.enabled = true;
-			GameController.instance.setJIT ();
+			GameControl.Instance.setJIT ();
 		}
 		Destroy (JIT1, 3);
 		Destroy (JIT2, 3);

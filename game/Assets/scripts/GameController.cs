@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour {
 	public Vector2 enemyStartPos;
 	public float playerHealth = 100;
 	bool debuggingGame = false; // Set this to false on final build
-	public bool JIT = true;
+	public bool JIT;
 	public int tempCorrectAns;
 
 	void Awake() {
@@ -46,6 +46,7 @@ public class GameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		JIT = true;
 		playerStartPos = playerPos;
 		enemyStartPos = enemyPos;
 
