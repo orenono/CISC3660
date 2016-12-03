@@ -76,6 +76,6 @@ public class NextButton : MonoBehaviour {
 		}
 
 		overlay.color = Color.black;
-		SceneManager.LoadScene ("level01");		
+		SceneManager.LoadScene ("walkingThroughHouse");		
 		}
 }

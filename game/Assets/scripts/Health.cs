@@ -36,7 +36,7 @@ public class Health : MonoBehaviour {
 			currHealth -= 25;
 			SetCurrentHealth (currHealth);
 			if (currHealth <= 0)
-				SceneManager.LoadScene ("gameover");	
+				SceneManager.LoadScene ("gameOverFinal0");	
 		}
 	}
 

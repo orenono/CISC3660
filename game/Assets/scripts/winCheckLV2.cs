@@ -12,7 +12,7 @@ public class winCheckLV2 : MonoBehaviour {
 	public void winCk()  {
 		int temp = GameController.instance.GetCorrectAnswerCount();
 		if (temp >= 24)
-			SceneManager.LoadScene ("win");
+			SceneManager.LoadScene ("winScene0");
 	}
 }
 
