@@ -9,10 +9,12 @@ public class ButtonBehaviorLv01 : MonoBehaviour {
 	public GameObject[] DisplayWhenResumed;
 	public bool paused;
 
+
+
 	// Use this for initialization
 	void Start () {
 
-		//if (pauseText == null) {
+
 		DisplayWhenPaused = GameObject.FindGameObjectsWithTag("Paused");
 		foreach (GameObject dp in DisplayWhenPaused)
 			dp.SetActive (false);
@@ -20,6 +22,7 @@ public class ButtonBehaviorLv01 : MonoBehaviour {
 		DisplayWhenResumed = GameObject.FindGameObjectsWithTag("Unpaused");
 		foreach (GameObject dp in DisplayWhenResumed)
 			dp.SetActive (true);
+	
 
 		//pauseText.SetActive(false);
 		paused = false;
@@ -31,10 +34,14 @@ public class ButtonBehaviorLv01 : MonoBehaviour {
 			PauseGame ();
 		else if (Input.GetButtonDown ("Jump") && paused) 
 			ResumeGame ();
+		else if (Input.GetKeyDown (KeyCode.Escape)) {
+			SceneManager.LoadScene("startMenu");
+		}
 	}
 
 	public void PauseGame()
 	{
+		
 		paused = true;
 		Time.timeScale = 0.0f;
 		//pauseText.SetActive (true);
@@ -42,6 +49,7 @@ public class ButtonBehaviorLv01 : MonoBehaviour {
 			dp.SetActive (true);
 		foreach (GameObject dp in DisplayWhenResumed)
 			dp.SetActive (false);
+		
 	}
 
 	public void ResumeGame()

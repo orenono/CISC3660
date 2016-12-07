@@ -11,57 +11,79 @@ public class QuestionController : MonoBehaviour {
 	public Transform resultObj;
 	public GameObject qTrigger;
 	public GameObject score;
+	private AudioSource correctAnswerAudio;
+	public AudioSource wrongAnswerAudio;
 
 	public static string selectedAnswer;
 	public static string choiceSelected = "n";
-	public static int counter = 0;
+	public int qCounter = 0;
 
 	// Use this for initialization
 	void Start () {
-		//counter = qTrigger.GetComponent<QuestionTrigger>().GetCounter();
-		if (qTrigger.gameObject.CompareTag ("Trigger")) {
-			counter = qTrigger.gameObject.GetComponent<QuestionTrigger> ().GetCounter();
-		}
-		Debug.Log (counter);
+		if (correctAnswerAudio == null)
+			correctAnswerAudio = GetComponent <AudioSource> ();
+
+		if (wrongAnswerAudio == null)
+			wrongAnswerAudio = GetComponent <AudioSource> ();
 	}
 
 	// Update is called once per frame
 	void Update () {
+		qCounter = GameController.instance.GetQuestionCounter ();
 
 		// Select a question from the array sequentially
-		populateQuestion (counter);
+		populateQuestion (qCounter);
 
 		if (choiceSelected == "y") {
 			choiceSelected = "n";
 
 			// Check the player's choice with the correct answer from the array
-			if (GetCorrectAnswer (counter) == selectedAnswer) {
+			if (GetCorrectAnswer (qCounter) == selectedAnswer) {
 				resultObj.GetComponent<TextMesh> ().text = "Correct!   Click next to continue";
-				//score.GetComponent<Score> ().IncreaseScore ();
+				correctAnswerAudio.Play ();
 				GameController.instance.IncreaseScore ();
-				Debug.Log ("Correct answer count: " + GameController.instance.GetCorrectAnswerCount ());
-
-			} 
-
-			if (GetCorrectAnswer (counter) != selectedAnswer) {
-
-				switch (int.Parse(GetCorrectAnswer (counter))) {
+				Color newColor = Color.green;
+				switch (int.Parse(GetCorrectAnswer (qCounter))) {
 				case 1:
-					Debug.Log ("one");
-					resultObj.GetComponent<TextMesh> ().text = "Wrong! The correct answer is the first choice!\n\t\t\tClick next to continue";
+					StartCoroutine(HighlightCorrectAnswer (ans1, newColor, 30));
 					break;
 
 				case 2:
-					resultObj.GetComponent<TextMesh> ().text = "Wrong! The correct answer is the second choice!\n\t\t\tClick next to continue";
+					StartCoroutine(HighlightCorrectAnswer (ans2, newColor, 30));
+					break;
+
+				case 3:
+					StartCoroutine(HighlightCorrectAnswer (ans3, newColor, 30));
+					break;
+
+				case 4:
+					StartCoroutine(HighlightCorrectAnswer (ans4, newColor, 30));
+					break;
+				}
+			} 
+
+			if (GetCorrectAnswer (qCounter) != selectedAnswer) {
+				wrongAnswerAudio.Play ();
+
+				switch (int.Parse(GetCorrectAnswer (qCounter))) {
+				case 1:
+					resultObj.GetComponent<TextMesh> ().text = "Wrong! " + GetExplanation(qCounter);
+					StartCoroutine(ShowCorrectAnswer (ans1, Color.yellow, 30));
+					break;
+
+				case 2:
+					resultObj.GetComponent<TextMesh> ().text = "Wrong! " + GetExplanation(qCounter);
+					StartCoroutine(ShowCorrectAnswer (ans2, Color.yellow, 30));
 					break;
 					
 				case 3:
-					Debug.Log ("three");
-					resultObj.GetComponent<TextMesh> ().text = "Wrong! The correct answer is the third choice!\n\t\t\tClick next to continue";
+					resultObj.GetComponent<TextMesh> ().text = "Wrong! " + GetExplanation(qCounter);
+					StartCoroutine(ShowCorrectAnswer (ans3, Color.yellow, 30));	
 					break;
 					
 				case 4:
-					resultObj.GetComponent<TextMesh> ().text = "Wrong! The correct answer is the forth choice!\n\t\t\tClick next to continue";
+					resultObj.GetComponent<TextMesh> ().text = "Wrong! " + GetExplanation(qCounter);
+					StartCoroutine(ShowCorrectAnswer (ans4, Color.yellow, 30));
 					break;
 				}
 			} 
@@ -74,15 +96,21 @@ public class QuestionController : MonoBehaviour {
 	}
 
 	public void populateQuestion(int counter) {
-		questionText.GetComponent<TextMesh> ().text = Questions.qa [counter, 0];
-		ans1.GetComponent<TextMesh> ().text = Questions.qa [counter, 1];
-		ans2.GetComponent<TextMesh> ().text = Questions.qa [counter, 2];
-		ans3.GetComponent<TextMesh> ().text = Questions.qa [counter, 3];
-		ans4.GetComponent<TextMesh> ().text = Questions.qa [counter, 4]; 
+		if (counter <= Questions.qa.GetLength (0)) {
+			questionText.GetComponent<TextMesh> ().text = Questions.qa [counter, 0];
+			ans1.GetComponent<TextMesh> ().text = Questions.qa [counter, 1];
+			ans2.GetComponent<TextMesh> ().text = Questions.qa [counter, 2];
+			ans3.GetComponent<TextMesh> ().text = Questions.qa [counter, 3];
+			ans4.GetComponent<TextMesh> ().text = Questions.qa [counter, 4]; 
+		}
 	}	
 
 	public string GetCorrectAnswer(int questionIndex) {
 		return Questions.qa [questionIndex, 5]; // the answer is stored in the 5th position
+	}
+
+	public string GetExplanation(int questionIndex) {
+		return Questions.qa [questionIndex, 6]; // explanation is stored in the 6th position
 	}
 
 	// This enables/disables the player from clicking on the answer choices
@@ -91,6 +119,39 @@ public class QuestionController : MonoBehaviour {
 		ans2.GetComponent<BoxCollider2D> ().enabled = b;
 		ans3.GetComponent<BoxCollider2D> ().enabled = b;
 		ans4.GetComponent<BoxCollider2D> ().enabled = b;
+	}
+
+	// Highlight the correct answer after the player picks the wrong one
+	public IEnumerator ShowCorrectAnswer(TextMesh tm, Color c, int fontSize) { 
+		tm.GetComponent<TextMesh> ().color = c;
+		tm.GetComponent<TextMesh> ().fontSize = fontSize;
+		for (int i = 0; i < 3; i++) {	
+			yield return new WaitForSeconds (.1f);
+			tm.GetComponent<TextMesh> ().color = Color.red;
+			tm.GetComponent<TextMesh> ().fontSize = fontSize + 2;
+			yield return new WaitForSeconds (.1f);
+			tm.GetComponent<TextMesh> ().color = c;
+			tm.GetComponent<TextMesh> ().fontSize = fontSize - 2;
+		}
+	}
+
+	public IEnumerator HighlightCorrectAnswer(TextMesh tm, Color c, int fontSize) { 
+		tm.GetComponent<TextMesh> ().color = c;
+		tm.GetComponent<TextMesh> ().fontSize = fontSize;
+		for (int i = 0; i < 2; i++) {	
+			yield return new WaitForSeconds (.1f);
+			tm.GetComponent<TextMesh> ().color = Color.white;
+			tm.GetComponent<TextMesh> ().fontSize = fontSize + 1;
+			yield return new WaitForSeconds (.1f);
+			tm.GetComponent<TextMesh> ().color = c;
+			tm.GetComponent<TextMesh> ().fontSize = fontSize - 1;
+		}
+	}
+
+	// Reset colors of all the answers
+	public void ResetAnswerColors(TextMesh tm, Color c, int fontSize) { 
+		tm.GetComponent<TextMesh> ().color = c;
+		tm.GetComponent<TextMesh> ().fontSize = fontSize;
 	}
 
 	IEnumerator wait(float n) {
