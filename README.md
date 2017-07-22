@@ -4,7 +4,7 @@ A horror themed educational video game. Created using Unity3D
 
 [![NightOfTheCancer](http://i.imgur.com/SPvF4B1.png)](https://vimeo.com/226355884 "Night of the cancer - Click to Watch!")
 
-Game Project
+
 -------------------------
 Things To Do - In order of importance (top is most the important). 
 
