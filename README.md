@@ -1,7 +1,7 @@
 # CISC3660
 Game Project
 
-[![NightOfTheCancer](http://i.imgur.com/SPvF4B1l.png)](https://vimeo.com/226355884 "Night of the cancer - Click to Watch!")
+[![NightOfTheCancer](http://i.imgur.com/SPvF4B1.png)](https://vimeo.com/226355884 "Night of the cancer - Click to Watch!")
 
 Game Project
 -------------------------
